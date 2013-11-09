@@ -22,10 +22,9 @@ app.use express.json()
 app.use express.urlencoded()
 app.use express.methodOverride()
 app.use app.router
-app.use express.static(path.join(__dirname, 'static'))
 app.use express.errorHandler()
-app.use(require('less-middleware')({ src: __dirname + '/static' }));
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(require('less-middleware')({ src: __dirname + '/static', force: true, sourceMap: true }))
+app.use express.static(path.join(__dirname, 'static'))
 
 mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerchat', ->
   console.log "Database connection established".yellow
