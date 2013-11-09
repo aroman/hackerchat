@@ -21,6 +21,9 @@ app.use express.errorHandler()
 app.get '/', (req, res) ->
   res.render 'index', {title: 'HackerChat'}
 
+app.get '/app', (req, res) ->
+  res.render 'app', {title: 'HackerChat'}
+
 app.get '/about', (req, res) ->
   res.render 'about', {title: 'HackerChat'}
 

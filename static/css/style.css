@@ -82,6 +82,21 @@ body {
   }
 }
 
+#chatbox {
+  background: #ccc;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 500px;
+  height: 300px;
+}
+
+.sendbox {
+  background: green;
+  width: 500px;
+  height: 40px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
 .footer {
   margin-top: 100px;
