@@ -1,10 +1,9 @@
 extends layout
 
 block content
+   
   h1= title
-  .chat
-  #chatbox
-  input.sendbox(type="text")
+   
   script(src="/js/underscore.js")
   script(src="/js/backbone.js")
   script(src="/socket.io/socket.io.js")
@@ -14,3 +13,7 @@ block content
    window.app = new AppView()
    
    Backbone.history.start()
+
+  .chat
+  #chatbox
+  input.sendbox(type="text")
