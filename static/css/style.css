@@ -3,10 +3,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+/*a {
   color: #00B7FF;
-}
+}*/
 
 .footer {
+	margin-top: 100px;
 	text-align: center;
 }
