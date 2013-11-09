@@ -2,9 +2,13 @@ extends layout
 
 block content
   .cta
-    .jumbotron
-      h1=title
-      p.lead.text-success Prepare to have your mind blown.
-      p
-        a.btn.btn-default.btn-lg.cta-buttons(href="/up") Sign Up
-        a.btn.btn-success.btn-lg.cta-buttons(href="/in") Log In
+    //- .jumbotron
+    //-   h1=title
+    //-   p.lead.text-success Prepare to have your mind blown.
+    //-   p
+    //-     a.btn.btn-default.btn-lg.cta-buttons(href="/up") Sign Up
+    //-     a.btn.btn-success.btn-lg.cta-buttons(href="/in") Log In
+  #chatbox
+  input.sendbox#thebox(type="text")
+  script(src="/socket.io/socket.io.js")
+  script(src="/js/app.js")

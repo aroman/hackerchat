@@ -90,13 +90,13 @@ a:hover {
   background: #ccc;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width: 500px;
+  width: 400px;
   height: 300px;
 }
 
 .sendbox {
   background: green;
-  width: 500px;
+  width: 400px;
   height: 40px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;

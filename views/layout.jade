@@ -24,12 +24,12 @@ html
           .nav-collapse 
 
     .container
+      script(src="/js/jquery.js")
+      script(src="/js/bootstrap.js")
       block content
-    script(src="/js/jquery.js")
-    script(src="/js/bootstrap.min.js")
     include footer
     
-  script(type="text/javascript")
+  script(type="text/javascript").
     // Single-page routing + template inheritance == sadface?
     var path = location.pathname;
     if (path.indexOf("/app") != -1) {
