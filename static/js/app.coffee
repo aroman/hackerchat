@@ -1,5 +1,11 @@
 # This is the main app file
 
+window.Chat = Backbone.Model.extend
+  idAttribute: "_id"
+
+  initialize: () ->
+    @set unread: 0
+
 socket = io.connect()
 
   # socket.on 'derp', (data) ->
@@ -15,7 +21,10 @@ window.AppView = Backbone.View.extend
   initialize: ->
     # Stuff goes in here
     console.log "in AppView initialize"
-    socket.emit "derp", "Hello from AppView!"
+    name = prompt("What's your name?")
+    socket.emit "auth", {event: 'new user', name: name}
+    socket.on "auth", (user) ->
+      console.log user
 
   onKeyUp: (e) ->
     if e.keyCode == 13

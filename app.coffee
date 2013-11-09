@@ -37,7 +37,17 @@ app.get '/app', (req, res) ->
 
 io.sockets.on 'connection', (socket) ->
 
-  socket.emit 'derp', "hello from the server"
+  socket.on "auth", (req) ->
+    console.log req
+    if req.event is 'new user'
+      user = new models.User()
+      user.name = req.name
+      user.save (err) ->
+        console.log "Err from create user: #{err}"
+        console.log user
+        socket.emit "auth", user
+    else
+
 
   socket.on 'derp', (data) ->
     console.log "Got this from the client: #{data}"

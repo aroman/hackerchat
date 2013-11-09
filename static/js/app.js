@@ -2,6 +2,15 @@
 (function() {
   var socket;
 
+  window.Chat = Backbone.Model.extend({
+    idAttribute: "_id",
+    initialize: function() {
+      return this.set({
+        unread: 0
+      });
+    }
+  });
+
   socket = io.connect();
 
   window.AppView = Backbone.View.extend({
@@ -10,8 +19,16 @@
       "keyup input": "onKeyUp"
     },
     initialize: function() {
+      var name;
       console.log("in AppView initialize");
-      return socket.emit("derp", "Hello from AppView!");
+      name = prompt("What's your name?");
+      socket.emit("auth", {
+        event: 'new user',
+        name: name
+      });
+      return socket.on("auth", function(user) {
+        return console.log(user);
+      });
     },
     onKeyUp: function(e) {
       if (e.keyCode === 13) {
