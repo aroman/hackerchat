@@ -32,9 +32,6 @@ mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerc
   server.listen PORT
 
 app.get '/', (req, res) ->
-  res.render 'index', {title: 'HackerChat'}
-
-app.get '/app', (req, res) ->
   res.render 'app', {title: 'HackerChat'}
 
 io.sockets.on 'connection', (socket) ->

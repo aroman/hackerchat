@@ -3,14 +3,14 @@ extends layout
 block content
   h1= title
   .chat
-    #chatbox
-    input.sendbox(type="text")
-    script(src="/js/underscore.js")
-    script(src="/js/backbone.js")
-    script(src="/socket.io/socket.io.js")
-    script(src="/js/app.js")
-    script.
-     window.socket = io.connect()
-     window.app = new AppView()
-     
-     Backbone.history.start()
+  #chatbox
+  input.sendbox(type="text")
+  script(src="/js/underscore.js")
+  script(src="/js/backbone.js")
+  script(src="/socket.io/socket.io.js")
+  script(src="/js/app.js")
+  script.
+   window.socket = io.connect()
+   window.app = new AppView()
+   
+   Backbone.history.start()
