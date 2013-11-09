@@ -7,7 +7,6 @@ mongoose = require 'mongoose'
 colors = require 'colors'
 
 models = require './models'
-# less = require 'express-less';
 
 PORT = process.env.PORT || 3000
 
@@ -25,7 +24,8 @@ app.use express.methodOverride()
 app.use app.router
 app.use express.static(path.join(__dirname, 'static'))
 app.use express.errorHandler()
-# app.use('/static/less-css', less(__dirname + '/static/less', { compress: true }))
+app.use(require('less-middleware')({ src: __dirname + '/static' }));
+app.use(express.static(path.join(__dirname, 'static')));
 
 mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerchat', ->
   console.log "Database connection established".yellow

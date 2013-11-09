@@ -9,6 +9,7 @@
     "express": "3.4.4",
     "jade": "*",
     "mongoose": "*",
+    "less-middleware": "*",
     "colors": "*",
     "socket.io": "*"
   }
