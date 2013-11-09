@@ -8,13 +8,20 @@ block content
     //-   p
     //-     a.btn.btn-default.btn-lg.cta-buttons(href="/up") Sign Up
     //-     a.btn.btn-success.btn-lg.cta-buttons(href="/in") Log In
+<<<<<<< HEAD
   #chatbox
   input.sendbox#thebox(type="text")
+=======
+  .chat
+    #chatbox
+    input.sendbox#thebox(type="text")
+  script(src="/socket.io/socket.io.js")
+>>>>>>> 04e99bb0a74977501fcb38c65418dc94209f496a
   script(src="/js/underscore.js")
   script(src="/js/backbone.js")
   script(src="/socket.io/socket.io.js")
   script(src="/js/app.js")
-  script.
+  script(type="text/javascript").
     window.socket = io.connect()
 
     //- window.groups = new Groups(!{groups_bootstrap});
