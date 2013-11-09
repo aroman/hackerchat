@@ -25,10 +25,10 @@ app.get '/about', (req, res) ->
   res.render 'about', {title: 'HackerChat'}
 
 app.get '/up', (req, res) ->
-  res.end "Sign up page <not implemented>"
+  res.render 'up', {title: 'HackerChat'}
 
 app.get '/in', (req, res) ->
-  res.end "Sign in page <not implemented>"
+  res.render 'in', {title: 'HackerChat'}
 
 http.createServer(app).listen app.get('port'), ->
   port = app.get("port")
