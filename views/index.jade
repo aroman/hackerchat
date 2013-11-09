@@ -5,6 +5,9 @@ block content
     .jumbotron
       h1=title
       p.lead.text-success Prepare to have your mind blown.
-      p
-        a.btn.btn-default.btn-lg.cta-buttons(href="/up") Sign Up
-        a.btn.btn-success.btn-lg.cta-buttons(href="/in") Log In
+      p Join a room:
+        form(name="input", action="app", method="get")
+          | Room:
+          input(type="text", name="room")
+
+          input.btn.btn-lg.btn-success(type="submit", value="Submit")
