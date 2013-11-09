@@ -4,9 +4,27 @@
 
   socket = io.connect();
 
-  socket.on('derp', function(data) {
-    alert("Got this from the server: " + data);
-    return socket.emit("derp", "Hello from the client");
+  window.AppView = Backbone.View.extend({
+    el: 'body',
+    events: {
+      "keyup input": "onKeyUp"
+    },
+    initialize: function() {
+      console.log("in AppView initialize");
+      return socket.emit("derp", "Hello from AppView!");
+    },
+    onKeyUp: function(e) {
+      if (e.keyCode === 13) {
+        return this.sendMessage($(e.target).val());
+      } else {
+        return this.onTypeFired();
+      }
+    },
+    sendMessage: function(message) {
+      console.log("Sending message");
+      return socket.emit("derp", message);
+    },
+    onTypeFired: function() {}
   });
 
 }).call(this);

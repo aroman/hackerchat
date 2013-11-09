@@ -36,7 +36,8 @@ app.get '/app', (req, res) ->
   res.render 'app', {title: 'HackerChat'}
 
 io.sockets.on 'connection', (socket) ->
+
   socket.emit 'derp', "hello from the server"
 
   socket.on 'derp', (data) ->
-  	console.log "Got this from the client: #{data}"
+    console.log "Got this from the client: #{data}"
