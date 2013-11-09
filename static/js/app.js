@@ -13,22 +13,40 @@
 
   socket = io.connect();
 
+  window.killBrain = function() {
+    localStorage.removeItem("user");
+    return console.log("The deed is done");
+  };
+
   window.AppView = Backbone.View.extend({
     el: 'body',
     events: {
       "keyup input": "onKeyUp"
     },
     initialize: function() {
-      var name;
-      console.log("in AppView initialize");
-      name = prompt("What's your name?");
-      socket.emit("auth", {
-        event: 'new user',
-        name: name
-      });
-      return socket.on("auth", function(user) {
-        return console.log(user);
-      });
+      var namebox, user;
+      user = localStorage.getItem("user");
+      if (_.isNull(user)) {
+        console.log("User is NEW, we must auth!");
+        socket.emit("derp", "Data");
+        namebox = $("#namebox");
+        return namebox.keyup(function(e) {
+          if (e.keyCode === 13) {
+            socket.emit("auth", {
+              event: 'new user',
+              name: namebox.val()
+            });
+            return socket.on("auth", function(new_usr) {
+              console.log(new_usr);
+              return localStorage.setItem("user", JSON.stringify(new_usr));
+            });
+          }
+        });
+      } else {
+        user = JSON.parse(user);
+        console.log(user);
+        return console.log("Welcome back, " + user.name);
+      }
     },
     onKeyUp: function(e) {
       if (e.keyCode === 13) {
