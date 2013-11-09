@@ -2,5 +2,9 @@ extends layout
 
 block content
   .cta
-    h1 Welcome to #{title}.
-    p.lead.text-warning Prepare to have your mind blown.
+    .jumbotron
+      h1=title
+      p.lead.text-success Prepare to have your mind blown.
+      p
+        a.btn.btn-default.btn-lg.cta-buttons(href="/up") Sign Up
+        a.btn.btn-success.btn-lg.cta-buttons(href="/in") Log In

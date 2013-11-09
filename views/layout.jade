@@ -2,11 +2,11 @@ doctype 5
 html
   head
     title= title
-    //- link(rel='stylesheet', href='/css/bootstrap.css')
-    link(rel='stylesheet', href='/css/bootstrap-slate.css')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    //- link(rel='stylesheet', href='/css/bootstrap-slate.css')
     link(rel='stylesheet', href='/css/style.css')
   body
-    .navbar.navbar-fixed-top(role='navigation')
+    .navbar.navbar-fixed-top.navbar-inverse(role='navigation')
       .container
         .navbar-header
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -17,12 +17,10 @@ html
           a.navbar-brand(href='#')=title
         .collapse.navbar-collapse
           ul.nav.navbar-nav
-            li.active
-              a(href='#') Home
             li
-              a(href='#about') About
+              a(href='/') Home
             li
-              a(href='#contact') Contact
+              a(href='/about') About
           .nav-collapse 
 
     .container
@@ -30,3 +28,12 @@ html
     script(src="/js/jquery.js")
     script(src="/js/bootstrap.min.js")
     include footer
+    
+  script(type="text/javascript")
+    // Single-page routing + template inheritance == sadface?
+    var path = location.pathname;
+    if (path.indexOf("/app") != -1) {
+      path = "/";
+    }
+    var link = $("a[href='" + path + "']");
+    link.parent().addClass('active');

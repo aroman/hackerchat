@@ -21,6 +21,14 @@ app.use express.errorHandler()
 app.get '/', (req, res) ->
   res.render 'index', {title: 'HackerChat'}
 
+app.get '/about', (req, res) ->
+  res.render 'about', {title: 'HackerChat'}
+
+app.get '/up', (req, res) ->
+  res.end "Sign up page <not implemented>"
+
+app.get '/in', (req, res) ->
+  res.end "Sign in page <not implemented>"
 
 http.createServer(app).listen app.get('port'), ->
   port = app.get("port")
