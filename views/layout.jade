@@ -24,14 +24,7 @@ html
     .container
       script(src="/js/jquery.js")
       script(src="/js/bootstrap.js")
+      script(src="/js/javascript.js")
       block content
     include footer
-    
-  script(type="text/javascript").
-    // Single-page routing + template inheritance == sadface?
-    var path = location.pathname;
-    if (path.indexOf("/app") != -1) {
-      path = "/";
-    }
-    var link = $("a[href='" + path + "']");
-    link.parent().addClass('active');
+  

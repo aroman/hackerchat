@@ -6488,6 +6488,7 @@ a:hover {
   font-size: 16px;
   color: white;
   display: block;
+  margin: auto;
 }
 .footer {
   margin-top: 100px;
