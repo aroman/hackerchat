@@ -6468,39 +6468,13 @@ a:hover {
   line-height: 40px;
   padding-bottom: 19px;
 }
-/* Customize container */
-@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
-.container-narrow > hr {
-  margin: 30px 0;
-}
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
 #chatbox {
   background: #ccc;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   width: 500px;
   height: 300px;
+  margin: auto;
 }
 .sendbox {
   background: green;
@@ -6513,6 +6487,7 @@ a:hover {
   padding-left: 5px;
   font-size: 16px;
   color: white;
+  display: block;
 }
 .footer {
   margin-top: 100px;
