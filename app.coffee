@@ -3,6 +3,9 @@ http = require 'http'
 path = require 'path'
 
 colors = require 'colors'
+mongoose = require 'mongoose'
+
+models = require './models'
 
 app = express()
 
@@ -33,6 +36,8 @@ app.get '/up', (req, res) ->
 app.get '/in', (req, res) ->
   res.render 'in', {title: 'HackerChat'}
 
-http.createServer(app).listen app.get('port'), ->
-  port = app.get("port")
-  console.log "HackerChat locked & loaded on port #{port}".yellow
+mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerchat', ->
+  console.log "Database connection established".yellow
+  http.createServer(app).listen app.get('port'), ->
+    port = app.get("port")
+    console.log "HackerChat locked & loaded on port #{port}".yellow
