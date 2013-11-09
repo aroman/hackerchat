@@ -6,12 +6,16 @@ lib-cov
 *.out
 *.pid
 *.gz
+
+*.DS_STORE
+desktop.ini
  
 pids
 logs
 results
  
 node_modules
+
 npm-debug.log
 
 style.css
