@@ -2,10 +2,11 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/css/bootstrap.css')
+    //- link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/bootstrap-slate.css')
     link(rel='stylesheet', href='/css/style.css')
   body
-    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+    .navbar.navbar-fixed-top(role='navigation')
       .container
         .navbar-header
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -22,8 +23,7 @@ html
               a(href='#about') About
             li
               a(href='#contact') Contact
-        //
-          /.nav-collapse 
+          .nav-collapse 
 
     .container
       block content

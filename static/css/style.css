@@ -1,13 +1,19 @@
+/*PilotPhilly color: FC853A*/
+
 body {
-  padding: 50px;
+  padding-top: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-/*a {
-  color: #00B7FF;
-}*/
+.cta {
+  text-align: center;
+}
 
 .footer {
-	margin-top: 100px;
-	text-align: center;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.pp-color {
+  color: #FC853A;
 }
