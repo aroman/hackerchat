@@ -10,6 +10,10 @@ body {
   text-align: center;
 }
 
+a:hover {
+  text-decoration: none
+}
+
 .cta-buttons {
   margin-left: 20px;
   font-size: 25px;
@@ -94,8 +98,13 @@ body {
   background: green;
   width: 500px;
   height: 40px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  outline: 0;
+  border: 0;
+  padding-left: 5px;
+  font-size: 16px;
+  color: white;
 }
 
 .footer {
