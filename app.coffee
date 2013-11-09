@@ -27,15 +27,6 @@ app.get '/', (req, res) ->
 app.get '/app', (req, res) ->
   res.render 'app', {title: 'HackerChat'}
 
-app.get '/about', (req, res) ->
-  res.render 'about', {title: 'HackerChat'}
-
-app.get '/up', (req, res) ->
-  res.render 'up', {title: 'HackerChat'}
-
-app.get '/in', (req, res) ->
-  res.render 'in', {title: 'HackerChat'}
-
 mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerchat', ->
   console.log "Database connection established".yellow
   http.createServer(app).listen app.get('port'), ->
