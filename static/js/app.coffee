@@ -12,6 +12,10 @@ transformText = (text, cb) ->
     if to_wget.slice(0,4) isnt "http"
       to_wget = "http://" + to_wget
     cb "<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=#{to_wget}></iframe>"
+  #http://www.youtube.com/watch?v=dsOO1nrKA8M
+  else if text.slice(0,27) is "http://youtube.com/watch?v="
+    video_id = text.slice(27)
+    cb "<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=http://youtube.googleapis.com/v/#{video_id}></iframe>"
   else if text.slice(0,5) is "xkcd "
     xkcd_id = text.match(/\d+/)[0]
     $.ajax({
