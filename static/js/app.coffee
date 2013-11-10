@@ -14,7 +14,7 @@ transformText = (text, cb) ->
         jsonpCallback: "xkcddata",
         async: false,
         success: (data) ->
-          cb "<img style='width:600px; height: auto' src='#{data.img}'>"
+          cb "<img style='width:600px; height: auto' src='#{data.img}'/>"
     }).responseText;
   else
     cb text
