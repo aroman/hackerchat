@@ -77,3 +77,98 @@ a {
 .pp-color {
   color: #FC853A;
 }
+
+body {
+    background: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/dark_matter.png);
+    font-family: Proxima, 'Proxima Nova', Arial;
+}
+
+h1 {
+    font-family: Proxima, 'Proxima Nova', Arial;
+    font-weight: bold;
+    font-size: 56px;
+}
+
+h1, p.lead {
+    animation: bounceDown .5s 0s ease both;
+    transform-origin: top left;
+    -webkit-animation: bounceDown .5s 0s ease both;
+    -webkit-transform-origin: top left;
+}
+
+.panel {
+    user-select: none;
+    animation: googlenow1 .7s .2s ease both;
+    transform-origin: top left;
+    -webkit-animation: googlenow1 .4s .2s ease both;
+    -webkit-transform-origin: top left;
+}
+
+div.panel-name.panel {
+    max-width: 350px;
+    margin: auto;
+    background: white;
+    border: 1px solid black;
+    overflow: hidden;
+    border-radius: @borderRadius;
+    .darkBoxShadow;
+    .panel-heading {
+      background-color: #C0392B;
+      color: white;
+      font-size: 40px;
+      box-shadow: rgba(255,255,255,0.7) 0px 2px 0px inset;
+      small {
+        display: block;
+        letter-spacing: 1px;
+        font-size: 20px;
+      }
+    }
+    .panel-body {
+      padding: 0px;
+      #namebox {
+        display: block;
+        width: 100%;
+        font-size: 50px;
+        padding: 16px;
+        font-family: Proxima, 'Proxima Nova', Arial;
+        box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+        border: none;
+        text-align: center;
+      }
+    }
+}
+
+@borderRadius: 10px;
+.darkBgShadow { text-shadow: 0 0 8px black; }
+.darkBoxShadow { box-shadow: 0 2px 20px black; }
+p.lead, h1, div.footer span { .darkBgShadow; }
+
+.btn-fancy {
+      box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset, 0 2px 20px black;
+}
+.btn-fancy:hover {
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+}
+.btn-fancy:active {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+}
+
+
+.go { .btn; .btn-success; .btn-block; .btn-fancy; .btn-lg; .darkBoxShadow; margin: auto; border-radius: @borderRadius;
+    margin-top: 30px;
+    width: 350px;
+    border-radius: 10px;
+    font-size: 28px;
+    animation: fade .6s .6s ease both;
+    transform-origin: center;
+    -webkit-animation: fade .6s .6s ease both;
+    -webkit-transform-origin: top left;
+
+}
+
+div.footer, footer {
+    animation: fade .25s 1s ease both;
+    transform-origin: center;
+    -webkit-animation: fade .25s 1s ease both;
+    -webkit-transform-origin: center;
+}
