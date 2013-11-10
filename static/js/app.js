@@ -28,6 +28,7 @@
   };
 
   buildChatLine = function(user, body, date, color) {
+    date = moment(date).format('h:mm a');
     return "<span><span style='color:" + color + "' class='userstamp'>" + user + "</span>: " + body + "<span class='timestamp'>" + date + "</span></span>";
   };
 
