@@ -8,18 +8,26 @@ link.parent().addClass('active');
 
 $(window).resize(function() {
     $('#chatbox').height(
-        $(window).height() - $('window').height() - 300
+        $(window).height() - $('window').height() - 330
     );
+
 });
 
 $(document).ready(function() {
     $('#chatbox').height(
-        $(window).height() - $('window').height() - 300
+        $(.nameprompt).height() - $('window').height() - 330
     );
 });
 
-/*
-  textfill
- @name      jquery.inputfit.js
- @author    vxsx
-*/
+$(window).resize(function() {
+    $('.sendbox').width(
+        $(window).width() - $('.nameprompt').width() - 65
+    );
+});
+
+
+$(document).ready(function() {
+    $('.sendbox').width(
+        $(.nameprompt).width() - $('.nameprompt').width() - 65
+    );
+});
