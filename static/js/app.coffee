@@ -26,7 +26,9 @@ window.ChatView = Backbone.View.extend
   el: 'body'
 
   events:
-    "keyup input": "onKeyUp"
+    "keyup .sendbox": "onSendBoxKeyUp"
+    "keyup #titleeditor": "onTitleEditorKeyUp"
+    "dblclick #title": "enableEditTitle"
 
   initialize: (user, chat) ->
     @chat = chat
@@ -35,28 +37,58 @@ window.ChatView = Backbone.View.extend
     socket.on 'new_msg', (data) =>
       @onNewMsg data.user, data.msg, data.date, data.color
 
+    socket.on 'title_update', (title) =>
+      @updateTitle title
+
     socket.emit 'subscribe', @chat._id
+
+    if @chat.title
+      @updateTitle @chat.title
 
     str = ""
     _.each chat.messages, (msg) ->
       str += "<br> #{buildChatLine(msg.username, msg.body, msg.date, msg.color)}"
     $("#chatbox").html str
-    $("input").focus()
+    $("#sendbox").focus()
 
     $(window).on 'resize', @scrollToBottom
 
     $(window).load =>
       @scrollToBottom()
 
+  enableEditTitle: ->
+    title = $("#title")
+    title.removeClass('animatedheader')
+    title_edit_input = $("#titleeditor")
+    title.hide()
+    title_edit_input.show()
+    title_edit_input.focus()
+
+  onTitleEditorKeyUp: (e) ->
+    title = $("#title")
+    title_edit_input = $("#titleeditor")
+    if e.keyCode == 13
+      title.show()
+      title_edit_input.hide()
+    else
+      new_val = title_edit_input.val()
+      @updateTitle new_val
+      socket.emit 'update_title', new_val
+
+  updateTitle: (title) ->
+    document.title = title
+    $("#title").html(title);
+
   scrollToBottom: ->
     $("#chatbox").scrollTop $('#chatbox')[0].scrollHeight
 
   onNewMsg: (user, msg, date, color) ->
+    console.log "OnNew Mesg"
     $("#chatbox").append("<br>" + buildChatLine(user, msg, date, color))
     @scrollToBottom()
     _.delay(@scrollToBottom, 250)
 
-  onKeyUp: (e) ->
+  onSendBoxKeyUp: (e) ->
     if e.keyCode == 13
       target = $(e.target)
       @sendMessage(target.val())

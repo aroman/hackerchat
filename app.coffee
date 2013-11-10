@@ -150,6 +150,12 @@ io.sockets.on 'connection', (socket) ->
     socket.join chat_id
     room = chat_id
 
+  socket.on 'update_title', (title) ->
+    socket.broadcast.to(room).emit 'title_update', title
+    models.Chat.update {_id: room}, {title: title}, (err) ->
+      if err
+        console.error "ERROR SAVING TITLE FOR CHAT #{room}: #{err}"
+
   socket.on 'msg_send', (user, msg, color) ->
     date = new Date().toISOString()
     io.sockets.in(room).emit 'new_msg', {user: user, msg: msg, date: date, color: color}

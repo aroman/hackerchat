@@ -88,7 +88,6 @@ a {
   border: 0;
   padding: 5px;
   font-size: 16px;
-  color: ;
   display: block;
   margin: auto;
 }
@@ -108,13 +107,13 @@ body {
     font-family: Proxima, 'Proxima Nova', Arial;
 }
 
-h1 {
+h1, #titleeditor {
     font-family: Proxima, 'Proxima Nova', Arial;
     font-weight: bold;
     font-size: 56px;
 }
 
-h1, p.lead {
+h1.animatedheader, p.lead {
     animation: bounceDown .5s 0s ease both;
     transform-origin: top left;
     -webkit-animation: bounceDown .5s 0s ease both;
@@ -301,4 +300,15 @@ div.footer, footer {
 
 .userstamp {
   font-weight: bold;
+}
+
+#titleeditor {
+  outline: none;
+  background: transparent;
+  border-radius: 25px;
+  border: 0;
+  color: rgb(200, 200, 200);
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }

@@ -34,7 +34,9 @@
   window.ChatView = Backbone.View.extend({
     el: 'body',
     events: {
-      "keyup input": "onKeyUp"
+      "keyup .sendbox": "onSendBoxKeyUp",
+      "keyup #titleeditor": "onTitleEditorKeyUp",
+      "dblclick #title": "enableEditTitle"
     },
     initialize: function(user, chat) {
       var str,
@@ -44,27 +46,60 @@
       socket.on('new_msg', function(data) {
         return _this.onNewMsg(data.user, data.msg, data.date, data.color);
       });
+      socket.on('title_update', function(title) {
+        return _this.updateTitle(title);
+      });
       socket.emit('subscribe', this.chat._id);
+      if (this.chat.title) {
+        this.updateTitle(this.chat.title);
+      }
       str = "";
       _.each(chat.messages, function(msg) {
         return str += "<br> " + (buildChatLine(msg.username, msg.body, msg.date, msg.color));
       });
       $("#chatbox").html(str);
-      $("input").focus();
+      $("#sendbox").focus();
       $(window).on('resize', this.scrollToBottom);
       return $(window).load(function() {
         return _this.scrollToBottom();
       });
     },
+    enableEditTitle: function() {
+      var title, title_edit_input;
+      title = $("#title");
+      title.removeClass('animatedheader');
+      title_edit_input = $("#titleeditor");
+      title.hide();
+      title_edit_input.show();
+      return title_edit_input.focus();
+    },
+    onTitleEditorKeyUp: function(e) {
+      var new_val, title, title_edit_input;
+      title = $("#title");
+      title_edit_input = $("#titleeditor");
+      if (e.keyCode === 13) {
+        title.show();
+        return title_edit_input.hide();
+      } else {
+        new_val = title_edit_input.val();
+        this.updateTitle(new_val);
+        return socket.emit('update_title', new_val);
+      }
+    },
+    updateTitle: function(title) {
+      document.title = title;
+      return $("#title").html(title);
+    },
     scrollToBottom: function() {
       return $("#chatbox").scrollTop($('#chatbox')[0].scrollHeight);
     },
     onNewMsg: function(user, msg, date, color) {
+      console.log("OnNew Mesg");
       $("#chatbox").append("<br>" + buildChatLine(user, msg, date, color));
       this.scrollToBottom();
       return _.delay(this.scrollToBottom, 250);
     },
-    onKeyUp: function(e) {
+    onSendBoxKeyUp: function(e) {
       var target;
       if (e.keyCode === 13) {
         target = $(e.target);

@@ -5,7 +5,8 @@ block content
     a(href="/chats") Chats 
     a(href="/logout") Logout
   header
-    h1= title
+    h1#title= title
+    input(style="display:none")#titleeditor
     p.lead Share this chat: 
       script { document.write(location.href); }
   section#chat
