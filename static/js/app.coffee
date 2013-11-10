@@ -40,13 +40,16 @@ window.ChatView = Backbone.View.extend
     str = ""
     _.each chat.messages, (msg) ->
       str += "<br> #{buildChatLine(msg.username, msg.body)}"
-    console.log str
     $("#chatbox").html str
-
     $("input").focus()
+    @scrollToBottom()
+
+  scrollToBottom: ->
+    $("#chatbox").scrollTop $('#chatbox')[0].scrollHeight
 
   onNewMsg: (user, msg) ->
-    $("#chatbox").append(buildChatLine(user, msg));
+    $("#chatbox").append("<br>" + buildChatLine(user, msg))
+    @scrollToBottom()
 
   onKeyUp: (e) ->
     if e.keyCode == 13

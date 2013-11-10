@@ -49,12 +49,16 @@
       _.each(chat.messages, function(msg) {
         return str += "<br> " + (buildChatLine(msg.username, msg.body));
       });
-      console.log(str);
       $("#chatbox").html(str);
-      return $("input").focus();
+      $("input").focus();
+      return this.scrollToBottom();
+    },
+    scrollToBottom: function() {
+      return $("#chatbox").scrollTop($('#chatbox')[0].scrollHeight);
     },
     onNewMsg: function(user, msg) {
-      return $("#chatbox").append(buildChatLine(user, msg));
+      $("#chatbox").append("<br>" + buildChatLine(user, msg));
+      return this.scrollToBottom();
     },
     onKeyUp: function(e) {
       var target;
