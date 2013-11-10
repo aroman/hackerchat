@@ -13,13 +13,20 @@ window.ChatView = Backbone.View.extend
 
     socket.emit 'subscribe', @chat._id
 
+    str = ""
+    _.each chat.messages, (msg) ->
+      str += "<br>#{msg.username}: #{msg.body}"
+    $("#chatbox").html str
+
   onNewMsg: (user, msg) ->
     prev = $("#chatbox").html()
     $("#chatbox").html(prev + "<br>#{user}: #{msg}")
 
   onKeyUp: (e) ->
     if e.keyCode == 13
-      @sendMessage($(e.target).val())
+      target = $(e.target)
+      @sendMessage(target.val())
+      target.val('')
     else
       @onTypeFired()
 

@@ -6,13 +6,19 @@
       "keyup input": "onKeyUp"
     },
     initialize: function(user, chat) {
-      var _this = this;
+      var str,
+        _this = this;
       this.chat = chat;
       this.user = user;
       socket.on('new_msg', function(data) {
         return _this.onNewMsg(data.user, data.msg);
       });
-      return socket.emit('subscribe', this.chat._id);
+      socket.emit('subscribe', this.chat._id);
+      str = "";
+      _.each(chat.messages, function(msg) {
+        return str += "<br>" + msg.username + ": " + msg.body;
+      });
+      return $("#chatbox").html(str);
     },
     onNewMsg: function(user, msg) {
       var prev;
@@ -20,8 +26,11 @@
       return $("#chatbox").html(prev + ("<br>" + user + ": " + msg));
     },
     onKeyUp: function(e) {
+      var target;
       if (e.keyCode === 13) {
-        return this.sendMessage($(e.target).val());
+        target = $(e.target);
+        this.sendMessage(target.val());
+        return target.val('');
       } else {
         return this.onTypeFired();
       }

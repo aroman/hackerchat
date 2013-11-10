@@ -125,3 +125,13 @@ io.sockets.on 'connection', (socket) ->
 
   socket.on 'msg_send', (user, msg) ->
     io.sockets.in(room).emit 'new_msg', {user: user, msg: msg}
+    msg_obj = {
+      username: user
+      body: msg
+      date: new Date().toISOString()
+    }
+    models.Chat.update {_id: room}, {$push: {messages: msg_obj}}, (err) ->
+      if err
+        console.error "ERROR SAVING MESSAGE TO CHAT #{room}: #{err}"
+      else
+        console.error "success"
