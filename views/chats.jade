@@ -6,7 +6,7 @@ block content
     p.lead Howdy, #{user.name}!
   section#chats
     div.panel.panel-chats.list-group
-      div.panel-heading My Chats
+      div.panel-heading Chats I've started
         each chat, i in user.chats  
           if chat.title
             a.list-group-item.list-group-item-room(href="/chats/#{chat._id}") #{chat.title}
