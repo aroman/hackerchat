@@ -10,7 +10,7 @@
 
   path = require('path');
 
-  zc = require('ZeroClipboard');
+  zc = require('zeroclipboard');
 
   mongoose = require('mongoose');
 
