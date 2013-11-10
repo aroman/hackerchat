@@ -5,3 +5,9 @@ if (path.indexOf("/app") != -1) {
 }
 var link = $("a[href='" + path + "']");
 link.parent().addClass('active');
+
+$(window).resize(function() {
+    $('#chatbox').height(
+        $(window).height() - $('window').height() - 300
+    );
+});
