@@ -8,6 +8,7 @@ colors = require 'colors'
 
 models = require './models'
 
+TITLE = "HackerChat"
 PORT = process.env.PORT || 3000
 
 app = express()
@@ -37,7 +38,7 @@ app.get '/', (req, res) ->
   if req.session.user_id
     res.redirect "/chats"
   else
-    res.render 'index', {title: 'HackerChat'}
+    res.render 'index', {title: TITLE}
 
 app.post '/', (req, res) ->
   name = req.body.name
@@ -72,7 +73,7 @@ app.get '/chats', (req, res) ->
       req.session.user_id = undefined
       res.redirect "/"
     else
-      res.render 'chats', {title: 'HackerChat', user: user}
+      res.render 'chats', {title: TITLE, user: user}
 
 app.get '/new-chat', (req, res) ->
   if not req.session.user_id
@@ -108,7 +109,7 @@ app.get '/chats/:chat_id', (req, res) ->
           if err
             res.send(500, err)
           else 
-            res.render 'chat', {title: 'HackerChat', user: JSON.stringify(user), chat: JSON.stringify(chat)}
+            res.render 'chat', {title: TITLE, user: JSON.stringify(user), chat: JSON.stringify(chat)}
 
 app.get '/logout', (req, res) ->
   req.session = null
