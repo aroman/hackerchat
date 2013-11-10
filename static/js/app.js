@@ -2,17 +2,28 @@
 (function() {
   var transformText;
 
-  transformText = function(text) {
-    var output, to_execute, to_wget;
+  transformText = function(text, cb) {
+    var output, to_execute, to_wget, xkcd_id;
     if (text[0] === "\`") {
       to_execute = text.slice(1);
       output = eval(to_execute);
-      return to_execute + "<br>&gt;&gt; " + output;
+      return cb(to_execute + "<br>&gt;&gt; " + output);
     } else if (text.slice(0, 5) === "wget ") {
       to_wget = text.slice(5);
       return "<iframe src=" + to_wget + "></iframe>";
+    } else if (text.slice(0, 5) === "xkcd ") {
+      xkcd_id = text.match(/\d+/)[0];
+      return $.ajax({
+        url: "http://dynamic.xkcd.com/api-0/jsonp/comic/" + xkcd_id + "?callback=?",
+        dataType: "json",
+        jsonpCallback: "xkcddata",
+        async: false,
+        success: function(data) {
+          return cb("<img style='width:300px; height: auto' src='" + data.img + "'>");
+        }
+      }).responseText;
     } else {
-      return text;
+      return cb(text);
     }
   };
 
@@ -53,8 +64,12 @@
       }
     },
     sendMessage: function(message) {
+      var _this = this;
       console.log("Sending message");
-      return socket.emit('msg_send', this.user.name, transformText(message));
+      return transformText(message, function(le_text) {
+        console.log("transformed text: " + le_text);
+        return socket.emit('msg_send', _this.user.name, le_text);
+      });
     },
     onTypeFired: function() {}
   });
