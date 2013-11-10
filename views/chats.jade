@@ -3,7 +3,6 @@ extends layout
 block content
   i.nav-logout(onclick="location.href = '/logout'").ion-log-out
   header
-    h1= title
     p.lead Howdy, #{user.name}!
   section#chats
     div.panel.panel-chats.list-group

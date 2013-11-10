@@ -31,7 +31,7 @@ app.use express.errorHandler()
 app.use(require('less-middleware')({ src: __dirname + '/static', force: true, sourceMap: true }))
 app.use express.static(path.join(__dirname, 'static'))
 
-mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerchat', ->
+mongoose.connect 'mongodb://dbuser:pilotpwva@ds053798.mongolab.com:53798/hackerchat', ->
   console.log "Database connection established".yellow
   server.listen PORT
 
@@ -40,7 +40,7 @@ COLOR_ID = 0
 getSaneColor = ->
   sane_colors = [
     "#D16B23"
-    "#FF8250"
+    "#BE3625"
     "#6464F1"
     "#4BF0A9"
   ]
