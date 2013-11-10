@@ -39,7 +39,7 @@ COLOR_ID = 0
 
 getSaneColor = ->
   sane_colors = [
-    "#FFD350"
+    "#D16B23"
     "#FF8250"
     "#6464F1"
     "#4BF0A9"
@@ -136,7 +136,7 @@ app.get '/chats/:chat_id', ensureSession, (req, res) ->
           if err
             res.send(500, err)
           else 
-            res.render 'chat', {title: TITLE, user: JSON.stringify(user), chat: JSON.stringify(chat)}
+            res.render 'chat', {title: TITLE, user: JSON.stringify(user), user_dict: user, chat: JSON.stringify(chat)}
 
 app.get '/logout', (req, res) ->
   req.session = null

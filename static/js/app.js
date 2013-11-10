@@ -19,7 +19,7 @@
         jsonpCallback: "xkcddata",
         async: false,
         success: function(data) {
-          return cb("<img style='width:600px; height: auto' src='" + data.img + "'>");
+          return cb("<img style='width:600px; height: auto' src='" + data.img + "'/>");
         }
       }).responseText;
     } else {
