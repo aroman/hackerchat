@@ -7,8 +7,8 @@ block content
     h1= title
     p.lead Howdy, #{user.name}!
   section#chats
-    ul
-      each chat, i in user.chats  
-        li
-          a(href="/chats/#{chat}") Chat ##{i+1}
+    div.panel.panel-chats.list-group
+      div.panel-heading My Chats
+       each chat, i in user.chats  
+         a.list-group-item(href="/chats/#{chat}") Chat ##{i+1}
     a(href="/new-chat") Create new chat 
