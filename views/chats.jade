@@ -9,10 +9,9 @@ block content
   section#chats
     div.panel.panel-chats.list-group
       div.panel-heading My Chats
-        - if (user.chats) 
-          each chat, i in user.chats  
-            a.list-group-item.list-group-item-room(href="/chats/#{chat}") Chat ##{i+1}
-        - else
+        each chat, i in user.chats  
+          a.list-group-item.list-group-item-room(href="/chats/#{chat}") Chat ##{i+1}
+        else
           .list-group-item.list-group-item-empty No Chats!
             small Click the button below to create a room.
     a.go(href="/new-chat") Create new chat

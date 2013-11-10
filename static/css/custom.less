@@ -215,18 +215,16 @@ div.panel-chats {
 #chats .panel-heading {
   line-height: 2em;
   padding: 0px 15px 15px 15px;
-  .list-group-item:first-child, .list-group-item:nth-child(2) {
-      border-radius: @borderRadius;
+  .list-group-item:first-child {
+      border-top-left-radius: @borderRadius;
+      border-top-right-radius: @borderRadius;
   }
   .list-group-item {
       line-height: 1em;
   }
-  .list-group-item:nth-child(2) {
-      margin-top: -67px;
-  }
   .list-group-item:last-child {
       border-bottom-left-radius: @borderRadius;
-      bottom-right-radius: @borderRadius;
+      bottom-bottom-right-radius: @borderRadius;
   }
   small {
       display: block;
