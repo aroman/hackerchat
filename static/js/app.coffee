@@ -19,6 +19,9 @@ transformText = (text, cb) ->
   else
     cb text
 
+buildChatLine = (user, body, time) ->
+  return "<span>#{user}: #{body}</span>"
+
 window.ChatView = Backbone.View.extend
   el: 'body'
 
@@ -36,13 +39,14 @@ window.ChatView = Backbone.View.extend
 
     str = ""
     _.each chat.messages, (msg) ->
-      str += "<br>#{msg.username}: #{msg.body}"
+      str += "<br> #{buildChatLine(msg.username, msg.body)}"
     console.log str
     $("#chatbox").html str
 
+    $("input").focus()
+
   onNewMsg: (user, msg) ->
-    prev = $("#chatbox").html()
-    $("#chatbox").html(prev + "<br><span>#{user}: #{msg}</span>")
+    $("#chatbox").append(buildChatLine(user, msg));
 
   onKeyUp: (e) ->
     if e.keyCode == 13
