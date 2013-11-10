@@ -153,6 +153,9 @@ io.sockets.on 'connection', (socket) ->
     socket.join chat_id
     room = chat_id
 
+  socket.on 'propogate_hack', (hack_body) ->
+    io.sockets.in(room).emit 'new_hack', hack_body
+
   socket.on 'update_title', (title) ->
     socket.broadcast.to(room).emit 'title_update', title
     models.Chat.update {_id: room}, {title: title}, (err) ->

@@ -1,14 +1,15 @@
+window.hacks = []
+
 transformText = (text, cb) ->
-  if text[0] is "\`"
-    to_execute = text.slice 1
-    output = eval to_execute
-    cb to_execute + "<br>&gt;&gt; " + output
-  else if text.slice(0,6) is "<hack>"
-    console.log("HACKED!!")
+
+  if text.slice(0,6) is "<hack>"
     $('#hackmodal').modal({backdrop: 'static'});
     $("#hackmodal").on 'shown.bs.modal', ->
       window.editor.refresh()
-
+  else if text[0] is "\`"
+    to_execute = text.slice 1
+    output = eval to_execute
+    cb to_execute + "<br>&gt;&gt; " + output
   else if text.slice(0,5) is "clear"
     $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>")
     window.chat.scrollToBottom()
@@ -38,6 +39,12 @@ buildChatLine = (user, body, date, color) ->
   date = moment(date).format('h:mm a')
   return "<span><span style='color:#{color}' class='userstamp'>#{user}</span><span class='timestamp'>#{date}</span>: #{body}</span>"
 
+$("#propogate-hack").click ->
+  console.log "PROPOGATING HACK TO SERVER"
+  hack_body = editor.doc.getValue()
+  socket.emit "propogate_hack", hack_body
+  $("#hackmodal").modal('hide');
+
 window.ChatView = Backbone.View.extend
   el: 'body'
 
@@ -57,6 +64,12 @@ window.ChatView = Backbone.View.extend
       @updateTitle title
 
     socket.emit 'subscribe', @chat._id
+
+    socket.on "new_hack", (hack_body) ->
+      console.log "RECIEVED HACK!!"
+      window.hacks.push(hack_body)
+      console.log "window.hacks is below"
+      console.log window.hacks
 
     if @chat.title
       @updateTitle @chat.title

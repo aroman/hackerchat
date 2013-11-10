@@ -2,20 +2,21 @@
 (function() {
   var buildChatLine, transformText;
 
+  window.hacks = [];
+
   transformText = function(text, cb) {
     var output, to_execute, to_wget, video_id, xkcd_id;
-    if (text[0] === "\`") {
-      to_execute = text.slice(1);
-      output = eval(to_execute);
-      return cb(to_execute + "<br>&gt;&gt; " + output);
-    } else if (text.slice(0, 6) === "<hack>") {
-      console.log("HACKED!!");
+    if (text.slice(0, 6) === "<hack>") {
       $('#hackmodal').modal({
         backdrop: 'static'
       });
       return $("#hackmodal").on('shown.bs.modal', function() {
         return window.editor.refresh();
       });
+    } else if (text[0] === "\`") {
+      to_execute = text.slice(1);
+      output = eval(to_execute);
+      return cb(to_execute + "<br>&gt;&gt; " + output);
     } else if (text.slice(0, 5) === "clear") {
       $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>");
       window.chat.scrollToBottom();
@@ -50,6 +51,14 @@
     return "<span><span style='color:" + color + "' class='userstamp'>" + user + "</span><span class='timestamp'>" + date + "</span>: " + body + "</span>";
   };
 
+  $("#propogate-hack").click(function() {
+    var hack_body;
+    console.log("PROPOGATING HACK TO SERVER");
+    hack_body = editor.doc.getValue();
+    socket.emit("propogate_hack", hack_body);
+    return $("#hackmodal").modal('hide');
+  });
+
   window.ChatView = Backbone.View.extend({
     el: 'body',
     events: {
@@ -69,6 +78,12 @@
         return _this.updateTitle(title);
       });
       socket.emit('subscribe', this.chat._id);
+      socket.on("new_hack", function(hack_body) {
+        console.log("RECIEVED HACK!!");
+        window.hacks.push(hack_body);
+        console.log("window.hacks is below");
+        return console.log(window.hacks);
+      });
       if (this.chat.title) {
         this.updateTitle(this.chat.title);
       }
