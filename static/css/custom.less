@@ -147,24 +147,28 @@ p.lead, h1, div.footer span { .darkBgShadow; }
       box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset, 0 2px 20px black;
 }
 .btn-fancy:hover {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3))!important;
 }
 .btn-fancy:active {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5))!important;
 }
 
 
-.go { .btn; .btn-success; .btn-block; .btn-fancy; .btn-lg; .darkBoxShadow; margin: auto; border-radius: @borderRadius;
-    margin-top: 30px;
-    width: 350px;
-    border-radius: 10px;
-    font-size: 28px;
-    animation: fade .6s .6s ease both;
-    transform-origin: center;
-    -webkit-animation: fade .6s .6s ease both;
-    -webkit-transform-origin: top left;
-
+.go { .btn; .btn-success; .btn-block; .btn-fancy; .btn-lg; .darkBoxShadow;
+  margin: auto;
+  border-radius: @borderRadius;
+  margin-top: 30px;
+  width: 350px;
+  border-radius: 10px;
+  font-size: 28px;
+  animation: fade .6s .6s ease both;
+  transform-origin: center;
+  -webkit-animation: fade .6s .6s ease both;
+  -webkit-transform-origin: top left;
+  transition: all .25s;
 }
+
+.go:hover { box-shadow: 0 2px 20px yellow; }
 
 div.footer, footer {
     animation: fade .25s 1s ease both;
