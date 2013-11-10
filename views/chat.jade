@@ -13,9 +13,11 @@ block content
     .chat
     #chatbox
     .sendbar
-        span.nameprompt(style="color:#{user_dict.color}") #{user_dict.name}:
-        input.sendbox(type="text", required="required")
-        button.sendbutton(disabled="true") Send
+      span.nameprompt(style="color:#{user_dict.color}") #{user_dict.name}
+        span.alt :&nbsp;
+      input.sendbox(type="text", required="required")
+      button.sendbutton(disabled="true") Send
+        i.ion-ios7-paperplane
   script(src="/js/underscore.js")
   script(src="/js/backbone.js")
   script(src="/socket.io/socket.io.js")

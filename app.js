@@ -69,7 +69,7 @@
 
   getSaneColor = function() {
     var sane_colors, to_return;
-    sane_colors = ["#FFD350", "#FF8250", "#6464F1", "#4BF0A9"];
+    sane_colors = ["#FF8250", "#6464F1", "#4BF0A9", "#8E44AD"];
     to_return = sane_colors[COLOR_ID];
     COLOR_ID += 1;
     if (COLOR_ID === sane_colors.length) {
