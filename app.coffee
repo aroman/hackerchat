@@ -134,11 +134,12 @@ io.sockets.on 'connection', (socket) ->
     room = chat_id
 
   socket.on 'msg_send', (user, msg) ->
-    io.sockets.in(room).emit 'new_msg', {user: user, msg: msg}
+    date = new Date().toISOString()
+    io.sockets.in(room).emit 'new_msg', {user: user, msg: msg, date: date}
     msg_obj = {
       username: user
       body: msg
-      date: new Date().toISOString()
+      date: date
     }
     models.Chat.update {_id: room}, {$push: {messages: msg_obj}}, (err) ->
       if err

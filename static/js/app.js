@@ -7,7 +7,7 @@
     if (text[0] === "\`") {
       to_execute = text.slice(1);
       output = eval(to_execute);
-      return cb(to_execute + "<br>&gt;&gt; " + output);
+      return cb(to_execute + "<br><br>&gt;&gt; " + output);
     } else if (text.slice(0, 5) === "wget ") {
       to_wget = text.slice(5);
       return "<iframe src=" + to_wget + "></iframe>";
@@ -27,8 +27,8 @@
     }
   };
 
-  buildChatLine = function(user, body, time) {
-    return "<span>" + user + ": " + body + "</span>";
+  buildChatLine = function(user, body, date) {
+    return "<span>" + user + " @ " + date + ": " + body + "</span>";
   };
 
   window.ChatView = Backbone.View.extend({
@@ -42,26 +42,27 @@
       this.chat = chat;
       this.user = user;
       socket.on('new_msg', function(data) {
-        return _this.onNewMsg(data.user, data.msg);
+        return _this.onNewMsg(data.user, data.msg, data.date);
       });
       socket.emit('subscribe', this.chat._id);
       str = "";
       _.each(chat.messages, function(msg) {
-        return str += "<br> " + (buildChatLine(msg.username, msg.body));
+        return str += "<br> " + (buildChatLine(msg.username, msg.body, msg.date));
       });
       $("#chatbox").html(str);
       $("input").focus();
-      this.scrollToBottom();
+      $(window).on('resize', this.scrollToBottom);
       return $(window).load(function() {
-        return this.scrollToBottom();
+        return _this.scrollToBottom();
       });
     },
     scrollToBottom: function() {
       return $("#chatbox").scrollTop($('#chatbox')[0].scrollHeight);
     },
-    onNewMsg: function(user, msg) {
-      $("#chatbox").append("<br>" + buildChatLine(user, msg));
-      return this.scrollToBottom();
+    onNewMsg: function(user, msg, date) {
+      $("#chatbox").append("<br>" + buildChatLine(user, msg, date));
+      this.scrollToBottom();
+      return _.delay(this.scrollToBottom, 250);
     },
     onKeyUp: function(e) {
       var target;

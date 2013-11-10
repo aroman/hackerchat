@@ -2,7 +2,7 @@ transformText = (text, cb) ->
   if text[0] is "\`"
     to_execute = text.slice 1
     output = eval to_execute
-    cb to_execute + "<br>&gt;&gt; " + output
+    cb to_execute + "<br><br>&gt;&gt; " + output
   else if text.slice(0,5) is "wget "
     to_wget = text.slice(5)
     return "<iframe src=#{to_wget}></iframe>"
@@ -19,8 +19,8 @@ transformText = (text, cb) ->
   else
     cb text
 
-buildChatLine = (user, body, time) ->
-  return "<span>#{user}: #{body}</span>"
+buildChatLine = (user, body, date) ->
+  return "<span>#{user} @ #{date}: #{body}</span>"
 
 window.ChatView = Backbone.View.extend
   el: 'body'
@@ -33,25 +33,28 @@ window.ChatView = Backbone.View.extend
     @user = user
 
     socket.on 'new_msg', (data) =>
-      @onNewMsg data.user, data.msg
+      @onNewMsg data.user, data.msg, data.date
 
     socket.emit 'subscribe', @chat._id
 
     str = ""
     _.each chat.messages, (msg) ->
-      str += "<br> #{buildChatLine(msg.username, msg.body)}"
+      str += "<br> #{buildChatLine(msg.username, msg.body, msg.date)}"
     $("#chatbox").html str
     $("input").focus()
-    @scrollToBottom()
-    $(window).load ->
+
+    $(window).on 'resize', @scrollToBottom
+
+    $(window).load =>
       @scrollToBottom()
 
   scrollToBottom: ->
     $("#chatbox").scrollTop $('#chatbox')[0].scrollHeight
 
-  onNewMsg: (user, msg) ->
-    $("#chatbox").append("<br>" + buildChatLine(user, msg))
+  onNewMsg: (user, msg, date) ->
+    $("#chatbox").append("<br>" + buildChatLine(user, msg, date))
     @scrollToBottom()
+    _.delay(@scrollToBottom, 250)
 
   onKeyUp: (e) ->
     if e.keyCode == 13
