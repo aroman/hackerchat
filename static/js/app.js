@@ -90,6 +90,13 @@
     },
     onSendBoxKeyUp: function(e) {
       var target, target_val;
+      target = $(e.target);
+      target_val = target.val();
+      if (target_val) {
+        $(".sendbutton").prop('disabled', false);
+      } else {
+        $(".sendbutton").prop('disabled', true);
+      }
       if (e.keyCode === 13) {
         target = $(e.target);
         target_val = target.val();
