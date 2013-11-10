@@ -12,5 +12,20 @@
     "less-middleware": "*",
     "colors": "*",
     "socket.io": "*"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "directories": {
+    "lib": "./node_modules/coffee-script"
+  },
+  "main": "./node_modules/coffee-script/coffee-script",
+  "bin": {
+    "coffee": "./bin/coffee",
+    "cake": "./bin/cake"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jashkenas/coffee-script.git"
   }
 }
