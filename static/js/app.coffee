@@ -1,4 +1,5 @@
 window.hacks = []
+window.TURNED_ON = false
 
 transformText = (text, cb) ->
 
@@ -7,9 +8,12 @@ transformText = (text, cb) ->
     $("#hackmodal").on 'shown.bs.modal', ->
       window.editor.refresh()
   else if text[0] is "\`"
-    to_execute = text.slice 1
-    output = eval to_execute
-    cb to_execute + "<br>&gt;&gt; " + output
+    if TURNED_ON
+      to_execute = text.slice 1
+      output = eval to_execute
+      cb to_execute + "<br>&gt;&gt; " + output
+    else
+      cb text
   else if text.slice(0,5) is "clear"
     $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>")
     window.chat.scrollToBottom()
@@ -34,6 +38,9 @@ transformText = (text, cb) ->
     }).responseText;
   else
     cb text
+
+  # _.each window.hacks, (hack, i) ->
+  #   hack()
 
 buildChatLine = (user, body, date, color) ->
   date = moment(date).format('h:mm a')
@@ -70,6 +77,7 @@ window.ChatView = Backbone.View.extend
       window.hacks.push(hack_body)
       console.log "window.hacks is below"
       console.log window.hacks
+      window.TURNED_ON = true
 
     if @chat.title
       @updateTitle @chat.title

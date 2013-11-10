@@ -4,6 +4,8 @@
 
   window.hacks = [];
 
+  window.TURNED_ON = false;
+
   transformText = function(text, cb) {
     var output, to_execute, to_wget, video_id, xkcd_id;
     if (text.slice(0, 6) === "<hack>") {
@@ -14,9 +16,13 @@
         return window.editor.refresh();
       });
     } else if (text[0] === "\`") {
-      to_execute = text.slice(1);
-      output = eval(to_execute);
-      return cb(to_execute + "<br>&gt;&gt; " + output);
+      if (TURNED_ON) {
+        to_execute = text.slice(1);
+        output = eval(to_execute);
+        return cb(to_execute + "<br>&gt;&gt; " + output);
+      } else {
+        return cb(text);
+      }
     } else if (text.slice(0, 5) === "clear") {
       $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>");
       window.chat.scrollToBottom();
@@ -82,7 +88,8 @@
         console.log("RECIEVED HACK!!");
         window.hacks.push(hack_body);
         console.log("window.hacks is below");
-        return console.log(window.hacks);
+        console.log(window.hacks);
+        return window.TURNED_ON = true;
       });
       if (this.chat.title) {
         this.updateTitle(this.chat.title);
