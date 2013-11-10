@@ -27,8 +27,7 @@ window.ChatView = Backbone.View.extend
 
   events:
     "keyup .sendbox": "onSendBoxKeyUp"
-    "keyup #titleeditor": "onTitleEditorKeyUp"
-    "dblclick #title": "enableEditTitle"
+    "keyup #title": "onTitleEditorKeyUp"
 
   initialize: (user, chat) ->
     @chat = chat
@@ -56,28 +55,15 @@ window.ChatView = Backbone.View.extend
     $(window).load =>
       @scrollToBottom()
 
-  enableEditTitle: ->
-    title = $("#title")
-    title.removeClass('animatedheader')
-    title_edit_input = $("#titleeditor")
-    title.hide()
-    title_edit_input.show()
-    title_edit_input.focus()
-
   onTitleEditorKeyUp: (e) ->
     title = $("#title")
-    title_edit_input = $("#titleeditor")
-    if e.keyCode == 13
-      title.show()
-      title_edit_input.hide()
-    else
-      new_val = title_edit_input.val()
-      @updateTitle new_val
-      socket.emit 'update_title', new_val
+    new_val = title.val()
+    socket.emit 'update_title', new_val
+    document.title = new_val
 
   updateTitle: (title) ->
     document.title = title
-    $("#title").html(title);
+    $("#title").val(title);
 
   scrollToBottom: ->
     $("#chatbox").scrollTop $('#chatbox')[0].scrollHeight
@@ -91,7 +77,9 @@ window.ChatView = Backbone.View.extend
   onSendBoxKeyUp: (e) ->
     if e.keyCode == 13
       target = $(e.target)
-      @sendMessage(target.val())
+      target_val = target.val()
+      return unless target_val
+      @sendMessage target_val
       target.val('')
     else
       @onTypeFired()

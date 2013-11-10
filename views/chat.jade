@@ -5,14 +5,15 @@ block content
     a(href="/chats") Chats 
     a(href="/logout") Logout
   header
-    h1#title= title
-    input(style="display:none")#titleeditor
+    input#title.titleeditor(value="#{title}")
     p.lead Share this chat: 
       script { document.write(location.href); }
   section#chat
     .chat
     #chatbox
-    input.sendbox(type="text", required="required")
+    .sendbar
+      input.sendbox(type="text", required="required")
+      button.btn.btn-small.btn-success.sendbutton Send
   script(src="/js/underscore.js")
   script(src="/js/backbone.js")
   script(src="/socket.io/socket.io.js")
