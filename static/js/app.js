@@ -7,13 +7,17 @@
     if (text[0] === "\`") {
       to_execute = text.slice(1);
       output = eval(to_execute);
-      return cb(to_execute + "<br><br>&gt;&gt; " + output);
+      return cb(to_execute + "<br>&gt;&gt; " + output);
+    } else if (text.slice(0, 5) === "clear") {
+      $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>");
+      window.chat.scrollToBottom();
+      return $(".sendbox").val('');
     } else if (text.slice(0, 5) === "wget ") {
       to_wget = text.slice(5);
       if (to_wget.slice(0, 4) !== "http") {
         to_wget = "http://" + to_wget;
       }
-      return cb("<iframe style='width:100%', src=" + to_wget + "></iframe>");
+      return cb("<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=" + to_wget + "></iframe>");
     } else if (text.slice(0, 5) === "xkcd ") {
       xkcd_id = text.match(/\d+/)[0];
       return $.ajax({

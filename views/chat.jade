@@ -10,7 +10,6 @@ block content
       a(href="https://twitter.com/share", target='_blank').twitter-share-button.ion-social-twitter
       a(href="#")#mailtobtn.ion-email
   section#chat
-    .chat
     #chatbox
     .sendbar
       span.nameprompt(style="color:#{user_dict.color}") #{user_dict.name}
@@ -25,8 +24,13 @@ block content
   script.
     window.socket = io.connect()
     window.chat = new ChatView(!{user}, !{chat})
-    lts = $("#linktoshare")
     $("#copybtn").attr('data-clipboard-text', location.href);
     ZeroClipboard.setDefaults({ moviePath: "/ZeroClipboard.swf" })
     var clip = new ZeroClipboard($('#copybtn'));
+    //- $('#copybtn').mouseover(function() {
+    //-   $('#copybtn').addClass("highlighted-social-link");
+    //- });
+    //- $('#copybtn').mouseout(function() {
+    //-   $('#copybtn').removeClass("highlighted-social-link");
+    //- });
     $("#mailtobtn").attr('href', "mailto:?body="+location.href);
