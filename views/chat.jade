@@ -1,13 +1,15 @@
 extends layout
 
 block content
-  a(href="/chats") Chats 
-  |
-  a(href="/logout")  Logout
-  h1= title
-  .chat
-  #chatbox
-  input.sendbox(type="text")
+  section#account
+    a(href="/chats") Chats 
+    a(href="/logout") Logout
+  header
+    h1= title
+  section#chat
+    .chat
+    #chatbox
+    input.sendbox(type="text")
   script(src="/js/underscore.js")
   script(src="/js/backbone.js")
   script(src="/socket.io/socket.io.js")
