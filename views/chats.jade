@@ -12,6 +12,6 @@ block content
         each chat, i in user.chats  
           a.list-group-item.list-group-item-room(href="/chats/#{chat}") Chat ##{i+1}
         else
-          .list-group-item.list-group-item-empty No Chats!
+          .list-group-item.list-group-item-empty None so far :(
             small Click the button below to create a room.
     a.go(href="/new-chat") Create new chat
