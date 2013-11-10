@@ -11,7 +11,7 @@ transformText = (text, cb) ->
     to_wget = text.slice(5)
     if to_wget.slice(0,4) isnt "http"
       to_wget = "http://" + to_wget
-    cb "<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=#{to_wget}></iframe>"
+    cb "<iframe style='width:100%; height: 350px' sandbox='sandbox', frameborder=0, src=#{to_wget}></iframe>"
   else if text.slice(0,37) is "embed http://www.youtube.com/watch?v="
     video_id = text.slice(37)
     cb "<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=http://youtube.googleapis.com/v/#{video_id}></iframe>"
