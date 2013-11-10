@@ -35,6 +35,7 @@
     el: 'body',
     events: {
       "keyup .sendbox": "onSendBoxKeyUp",
+      "click .sendbutton": "sendFromButton",
       "keyup #title": "onTitleEditorKeyUp"
     },
     initialize: function(user, chat) {
@@ -82,6 +83,10 @@
       $("#chatbox").append("<br>" + buildChatLine(user, msg, date, color));
       this.scrollToBottom();
       return _.delay(this.scrollToBottom, 250);
+    },
+    sendFromButton: function() {
+      this.sendMessage($(".sendbox").val());
+      return $(".sendbox").val('');
     },
     onSendBoxKeyUp: function(e) {
       var target, target_val;

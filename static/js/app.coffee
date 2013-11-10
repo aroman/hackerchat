@@ -27,6 +27,7 @@ window.ChatView = Backbone.View.extend
 
   events:
     "keyup .sendbox": "onSendBoxKeyUp"
+    "click .sendbutton": "sendFromButton"
     "keyup #title": "onTitleEditorKeyUp"
 
   initialize: (user, chat) ->
@@ -73,6 +74,10 @@ window.ChatView = Backbone.View.extend
     $("#chatbox").append("<br>" + buildChatLine(user, msg, date, color))
     @scrollToBottom()
     _.delay(@scrollToBottom, 250)
+
+  sendFromButton: ->
+    @sendMessage $(".sendbox").val()
+    $(".sendbox").val('')
 
   onSendBoxKeyUp: (e) ->
     if e.keyCode == 13
