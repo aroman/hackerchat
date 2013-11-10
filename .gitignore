@@ -8,6 +8,7 @@ lib-cov
 *.gz
 
 *.DS_STORE
+ds_store
 desktop.ini
  
 pids
