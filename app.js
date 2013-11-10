@@ -232,6 +232,9 @@
       socket.join(chat_id);
       return room = chat_id;
     });
+    socket.on('propogate_hack', function(hack_body) {
+      return io.sockets["in"](room).emit('new_hack', hack_body);
+    });
     socket.on('update_title', function(title) {
       socket.broadcast.to(room).emit('title_update', title);
       return models.Chat.update({
