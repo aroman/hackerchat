@@ -14,7 +14,7 @@ block content
     .sendbar
       span.nameprompt(style="color:#{user_dict.color}") #{user_dict.name}
         span.alt :&nbsp;
-      input.sendbox(type="text", required="required")
+      input.sendbox(type="text", required="required", placeholder="Message")
       button.sendbutton(disabled="true") Send
         i.ion-ios7-paperplane
   script(src="/js/underscore.js")
