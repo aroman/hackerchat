@@ -2,12 +2,16 @@ transformText = (text, cb) ->
   if text[0] is "\`"
     to_execute = text.slice 1
     output = eval to_execute
-    cb to_execute + "<br><br>&gt;&gt; " + output
+    cb to_execute + "<br>&gt;&gt; " + output
+  else if text.slice(0,5) is "clear"
+    $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>")
+    window.chat.scrollToBottom()
+    $(".sendbox").val('')
   else if text.slice(0,5) is "wget "
     to_wget = text.slice(5)
     if to_wget.slice(0,4) isnt "http"
       to_wget = "http://" + to_wget
-    cb "<iframe style='width:100%', src=#{to_wget}></iframe>"
+    cb "<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=#{to_wget}></iframe>"
   else if text.slice(0,5) is "xkcd "
     xkcd_id = text.match(/\d+/)[0]
     $.ajax({
