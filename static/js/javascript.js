@@ -17,3 +17,9 @@ $(document).ready(function() {
         $(window).height() - $('window').height() - 300
     );
 });
+
+/*
+  textfill
+ @name      jquery.inputfit.js
+ @author    vxsx
+*/
