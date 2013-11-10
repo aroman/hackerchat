@@ -17,6 +17,19 @@ block content
       input.sendbox(type="text", required="required", placeholder="Message")
       button.sendbutton(disabled="true") Send
         i.ion-ios7-paperplane
+  #hackmodal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4.modal-title Hack the Chat
+        .modal-body(style='text-align:left')
+          textarea.hackbox(style="width:100%; height: 300px", autofocus='autofocus')
+            | &#x2F;&#x2F; your hack goes here...
+            | 
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal', style="float:left") Close
+          button.btn.btn-danger(type='button') Propogate hack
+
   script(src="/js/underscore.js")
   script(src="/js/backbone.js")
   script(src="/socket.io/socket.io.js")

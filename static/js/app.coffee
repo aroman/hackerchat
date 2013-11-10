@@ -3,6 +3,19 @@ transformText = (text, cb) ->
     to_execute = text.slice 1
     output = eval to_execute
     cb to_execute + "<br>&gt;&gt; " + output
+  else if text.slice(0,6) is "<hack>"
+    console.log("HACKED!!")
+    $('#hackmodal').modal({backdrop: 'static'});
+    $("#hackmodal").on 'shown.bs.modal', ->
+      $('textarea').append("\n")
+      editor = CodeMirror.fromTextArea $('textarea')[0],
+        mode: "text/javascript",
+        theme: 'monokai',
+        lineNumbers: true,
+        matchBrackets: true,
+      console.log editor.doc
+      editor.doc.setCursor(3)
+
   else if text.slice(0,5) is "clear"
     $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>")
     window.chat.scrollToBottom()

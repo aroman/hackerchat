@@ -8,6 +8,23 @@
       to_execute = text.slice(1);
       output = eval(to_execute);
       return cb(to_execute + "<br>&gt;&gt; " + output);
+    } else if (text.slice(0, 6) === "<hack>") {
+      console.log("HACKED!!");
+      $('#hackmodal').modal({
+        backdrop: 'static'
+      });
+      return $("#hackmodal").on('shown.bs.modal', function() {
+        var editor;
+        $('textarea').append("\n");
+        editor = CodeMirror.fromTextArea($('textarea')[0], {
+          mode: "text/javascript",
+          theme: 'monokai',
+          lineNumbers: true,
+          matchBrackets: true
+        });
+        console.log(editor.doc);
+        return editor.doc.setCursor(3);
+      });
     } else if (text.slice(0, 5) === "clear") {
       $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>");
       window.chat.scrollToBottom();

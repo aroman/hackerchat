@@ -16,6 +16,8 @@ app = express()
 server = http.createServer app
 io = sio.listen server
 
+# app.locals.pretty = true
+
 app.set 'views', path.join(__dirname, 'views')
 app.set 'view engine', 'jade'
 app.use express.favicon()
