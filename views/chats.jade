@@ -5,7 +5,7 @@ block content
   h1= title
   p.lead Howdy, #{user.name}!
   ul
-    li Chat #1
-    li Chat #2
-    li Chat #3
-  a(href="/new-chat") Create new chat
+    each chat, i in user.chats  
+      li
+        a(href="/chats/#{chat}") Chat ##{i+1}
+  a(href="/new-chat") Create new chat 
