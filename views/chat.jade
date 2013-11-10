@@ -1,15 +1,17 @@
 extends layout
 
 block content
-  section#account
+  section.two-buttons#account
     a(href="/chats") Chats 
     a(href="/logout") Logout
   header
     h1= title
+    p.lead Share this chat: 
+      script { document.write(location.href); }
   section#chat
     .chat
     #chatbox
-    input.sendbox(type="text")
+    input.sendbox(type="text", required="required")
   script(src="/js/underscore.js")
   script(src="/js/backbone.js")
   script(src="/socket.io/socket.io.js")
