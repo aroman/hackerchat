@@ -1,9 +1,11 @@
 extends layout
 
 block content
+  a(href="/logout") Logout
   h1= title
   p.lead Howdy, #{user.name}!
   ul
     li Chat #1
     li Chat #2
     li Chat #3
+  a(href="/new-chat") Create new chat

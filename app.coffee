@@ -65,15 +65,37 @@ app.post '/', (req, res) ->
 app.get '/chats', (req, res) ->
   if not req.session.user_id
     res.redirect "/"
-  else
-    user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
-      if err
-        res.send(500, err)
-      else if user is null
-        req.session.user_id = undefined
-        res.redirect "/"
-      else
-        res.render 'chats', {title: 'HackerChat', user: user}
+  user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
+    if err
+      res.send(500, err)
+    else if user is null
+      req.session.user_id = undefined
+      res.redirect "/"
+    else
+      res.render 'chats', {title: 'HackerChat', user: user}
+
+app.get '/new-chat', (req, res) ->
+  if not req.session.user_id
+    res.redirect "/"
+  user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
+    if err
+      res.send(500, err)
+    else if user is null
+      req.session.user_id = undefined
+      res.redirect "/"
+    else
+      chat = new models.Chat()
+      chat.user = user
+      chat.save (err) ->
+        if err
+          res.send(500, err)
+        else
+          user.chats.push chat
+          user.save (err) ->
+            if err
+              res.send(500, err)
+            else
+              res.redirect "/chats/#{chat._id}"
 
 app.get '/logout', (req, res) ->
   req.session = null
