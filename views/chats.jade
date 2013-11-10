@@ -1,11 +1,14 @@
 extends layout
 
 block content
-  a(href="/logout") Logout
-  h1= title
-  p.lead Howdy, #{user.name}!
-  ul
-    each chat, i in user.chats  
-      li
-        a(href="/chats/#{chat}") Chat ##{i+1}
-  a(href="/new-chat") Create new chat 
+  section#account
+    a(href="/logout") Logout
+  header
+    h1= title
+    p.lead Howdy, #{user.name}!
+  section#chats
+    ul
+      each chat, i in user.chats  
+        li
+          a(href="/chats/#{chat}") Chat ##{i+1}
+    a(href="/new-chat") Create new chat 
