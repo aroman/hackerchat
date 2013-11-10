@@ -3,7 +3,7 @@
   var buildChatLine, transformText;
 
   transformText = function(text, cb) {
-    var output, to_execute, to_wget, xkcd_id;
+    var output, to_execute, to_wget, video_id, xkcd_id;
     if (text[0] === "\`") {
       to_execute = text.slice(1);
       output = eval(to_execute);
@@ -18,6 +18,9 @@
         to_wget = "http://" + to_wget;
       }
       return cb("<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=" + to_wget + "></iframe>");
+    } else if (text.slice(0, 37) === "embed http://www.youtube.com/watch?v=") {
+      video_id = text.slice(37);
+      return cb("<iframe style='width:100%; height: 450px' sandbox='sandbox', frameborder=0, src=http://youtube.googleapis.com/v/" + video_id + "></iframe>");
     } else if (text.slice(0, 5) === "xkcd ") {
       xkcd_id = text.match(/\d+/)[0];
       return $.ajax({

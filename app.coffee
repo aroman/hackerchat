@@ -42,7 +42,7 @@ getSaneColor = ->
     "#BE3625"
     "#0367E9"
     "#2D8306"
-    "#4BF0A9"
+    "#A104D2"
   ]
   to_return = sane_colors[COLOR_ID]
   COLOR_ID += 1
