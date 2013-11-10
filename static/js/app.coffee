@@ -47,14 +47,15 @@ window.ChatView = Backbone.View.extend
 
     str = ""
     _.each chat.messages, (msg) ->
-      str += "<br> #{buildChatLine(msg.username, msg.body, msg.date, msg.color)}"
+      str += "#{buildChatLine(msg.username, msg.body, msg.date, msg.color)}"
     $("#chatbox").html str
-    $("#sendbox").focus()
 
     $(window).on 'resize', @scrollToBottom
 
     $(window).load =>
       @scrollToBottom()
+
+    $(".sendbox").focus()
 
   onTitleEditorKeyUp: (e) ->
     title = $("#title")

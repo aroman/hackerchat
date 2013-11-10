@@ -55,14 +55,14 @@
       }
       str = "";
       _.each(chat.messages, function(msg) {
-        return str += "<br> " + (buildChatLine(msg.username, msg.body, msg.date, msg.color));
+        return str += "" + (buildChatLine(msg.username, msg.body, msg.date, msg.color));
       });
       $("#chatbox").html(str);
-      $("#sendbox").focus();
       $(window).on('resize', this.scrollToBottom);
-      return $(window).load(function() {
+      $(window).load(function() {
         return _this.scrollToBottom();
       });
+      return $(".sendbox").focus();
     },
     onTitleEditorKeyUp: function(e) {
       var new_val, title;
