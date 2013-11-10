@@ -24,8 +24,14 @@ block content
           h4.modal-title Hack the Chat
         .modal-body(style='text-align:left')
           textarea.hackbox(style="width:100%; height: 300px", autofocus='autofocus')
-            | &#x2F;&#x2F; your hack goes here...
-            | 
+            | function (text, callback) {
+            |    &#x2F;&#x2F; This is what you want to capture
+            |    INDENTIFIER = "";
+            |  
+            |    if (text.slice(0, INDENTIFIER.length - 1) is INDENTIFIER) {
+            |      &#x2F;&#x2F; Your code goes here!
+            |    }
+            |}
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal', style="float:left") Close
           button.btn.btn-danger(type='button') Propogate hack

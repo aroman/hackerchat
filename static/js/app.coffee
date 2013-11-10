@@ -7,14 +7,7 @@ transformText = (text, cb) ->
     console.log("HACKED!!")
     $('#hackmodal').modal({backdrop: 'static'});
     $("#hackmodal").on 'shown.bs.modal', ->
-      $('textarea').append("\n")
-      editor = CodeMirror.fromTextArea $('textarea')[0],
-        mode: "text/javascript",
-        theme: 'monokai',
-        lineNumbers: true,
-        matchBrackets: true,
-      console.log editor.doc
-      editor.doc.setCursor(3)
+      window.editor.refresh()
 
   else if text.slice(0,5) is "clear"
     $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>")
@@ -72,6 +65,12 @@ window.ChatView = Backbone.View.extend
     _.each chat.messages, (msg) ->
       str += "<span class='prevmsg'>#{buildChatLine(msg.username, msg.body, msg.date, msg.color)}</span>"
     $("#chatbox").html str
+
+    window.editor = CodeMirror.fromTextArea $('textarea')[0],
+      mode: "text/javascript",
+      theme: 'monokai',
+      lineNumbers: true,
+      matchBrackets: true
 
     $(window).on 'resize', @scrollToBottom
 

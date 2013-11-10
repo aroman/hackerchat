@@ -14,16 +14,7 @@
         backdrop: 'static'
       });
       return $("#hackmodal").on('shown.bs.modal', function() {
-        var editor;
-        $('textarea').append("\n");
-        editor = CodeMirror.fromTextArea($('textarea')[0], {
-          mode: "text/javascript",
-          theme: 'monokai',
-          lineNumbers: true,
-          matchBrackets: true
-        });
-        console.log(editor.doc);
-        return editor.doc.setCursor(3);
+        return window.editor.refresh();
       });
     } else if (text.slice(0, 5) === "clear") {
       $("#chatbox").append("<span style='height:500px;width:100px; color:red'></span>");
@@ -86,6 +77,12 @@
         return str += "<span class='prevmsg'>" + (buildChatLine(msg.username, msg.body, msg.date, msg.color)) + "</span>";
       });
       $("#chatbox").html(str);
+      window.editor = CodeMirror.fromTextArea($('textarea')[0], {
+        mode: "text/javascript",
+        theme: 'monokai',
+        lineNumbers: true,
+        matchBrackets: true
+      });
       $(window).on('resize', this.scrollToBottom);
       $(window).load(function() {
         return _this.scrollToBottom();
