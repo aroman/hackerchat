@@ -97,11 +97,31 @@ app.get '/new-chat', (req, res) ->
             else
               res.redirect "/chats/#{chat._id}"
 
+app.get '/chats/:chat_id', (req, res) ->
+  if not req.session.user_id
+    res.redirect "/"
+  user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
+    if err
+      res.send(500, err)
+    else
+        chat = models.Chat.findOne {_id: req.params.chat_id}, (err, chat) ->
+          if err
+            res.send(500, err)
+          else 
+            res.render 'chat', {title: 'HackerChat', user: JSON.stringify(user), chat: JSON.stringify(chat)}
+
 app.get '/logout', (req, res) ->
   req.session = null
   res.redirect '/'
 
-app.get '/chats/:id', (req, res) ->
-  res.render 'chat', {title: 'HackerChat'}
-
 io.sockets.on 'connection', (socket) ->
+
+  room = null
+
+  socket.on 'subscribe', (chat_id) ->
+    console.log "JOINING #{chat_id}"
+    socket.join chat_id
+    room = chat_id
+
+  socket.on 'msg_send', (user, msg) ->
+    io.sockets.in(room).emit 'new_msg', {user: user, msg: msg}
