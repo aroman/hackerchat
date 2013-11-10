@@ -62,7 +62,7 @@
 
   app.use(express["static"](path.join(__dirname, 'static')));
 
-  mongoose.connect('mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerchat', function() {
+  mongoose.connect('mongodb://dbuser:pilotpwva@ds053798.mongolab.com:53798/hackerchat', function() {
     console.log("Database connection established".yellow);
     return server.listen(PORT);
   });
@@ -71,7 +71,7 @@
 
   getSaneColor = function() {
     var sane_colors, to_return;
-    sane_colors = ["#D16B23", "#FF8250", "#6464F1", "#4BF0A9"];
+    sane_colors = ["#BE3625", "#0367E9", "#2D8306", "#A104D2"];
     to_return = sane_colors[COLOR_ID];
     COLOR_ID += 1;
     if (COLOR_ID === sane_colors.length) {
