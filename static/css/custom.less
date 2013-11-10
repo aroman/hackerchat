@@ -76,15 +76,23 @@ a {
   text-align: left;
   font-size: 18px;
   overflow-x: auto;
+  padding-bottom: 20px;
 }
 
 #chatbox>span {
+  animation: slideUp2 .5s ease both;
+  transform-origin: bottom left;
+  -webkit-animation: slideUp2 .5s ease both;
+  -webkit-transform-origin: bottom left;
+  display: block;
+  line-height: 1.4em;
+}
+
+#chatbox>span.prevmsg {
   animation: flipInX .5s .5s ease both;
   transform-origin: top left;
   -webkit-animation: flipInX .5s .5s ease both;
   -webkit-transform-origin: top left;
-  display: block;
-  line-height: 1.4em;
 }
 
 #chatbox>br {
