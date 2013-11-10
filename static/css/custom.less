@@ -86,8 +86,8 @@ a {
   background-color: #bbb;
   width: 650px;
   height: 40px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: @borderRadius;
+  border-bottom-right-radius: @borderRadius;
   outline: 0;
   border: 0;
   border-top: 1px solid gray;
@@ -97,6 +97,18 @@ a {
   margin: auto;
 }
 
+.sendbutton {
+  .btn; .btn-success; .btn-fancy;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  box-shadow: none;
+  border-top: 1px solid Gray;padding: 9px 12px;
+}
 
 .footer {
   margin-top: 150px;
@@ -312,13 +324,3 @@ div.footer, footer {
   margin-bottom: 10px;
 }
 
-.sendbutton {
-  .btn; .btn-success; .btn-fancy;
-  border-radius: 10px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 0px;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-}
