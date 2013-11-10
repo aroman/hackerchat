@@ -35,8 +35,7 @@
     el: 'body',
     events: {
       "keyup .sendbox": "onSendBoxKeyUp",
-      "keyup #titleeditor": "onTitleEditorKeyUp",
-      "dblclick #title": "enableEditTitle"
+      "keyup #title": "onTitleEditorKeyUp"
     },
     initialize: function(user, chat) {
       var str,
@@ -64,31 +63,16 @@
         return _this.scrollToBottom();
       });
     },
-    enableEditTitle: function() {
-      var title, title_edit_input;
-      title = $("#title");
-      title.removeClass('animatedheader');
-      title_edit_input = $("#titleeditor");
-      title.hide();
-      title_edit_input.show();
-      return title_edit_input.focus();
-    },
     onTitleEditorKeyUp: function(e) {
-      var new_val, title, title_edit_input;
+      var new_val, title;
       title = $("#title");
-      title_edit_input = $("#titleeditor");
-      if (e.keyCode === 13) {
-        title.show();
-        return title_edit_input.hide();
-      } else {
-        new_val = title_edit_input.val();
-        this.updateTitle(new_val);
-        return socket.emit('update_title', new_val);
-      }
+      new_val = title.val();
+      socket.emit('update_title', new_val);
+      return document.title = new_val;
     },
     updateTitle: function(title) {
       document.title = title;
-      return $("#title").html(title);
+      return $("#title").val(title);
     },
     scrollToBottom: function() {
       return $("#chatbox").scrollTop($('#chatbox')[0].scrollHeight);
@@ -100,10 +84,14 @@
       return _.delay(this.scrollToBottom, 250);
     },
     onSendBoxKeyUp: function(e) {
-      var target;
+      var target, target_val;
       if (e.keyCode === 13) {
         target = $(e.target);
-        this.sendMessage(target.val());
+        target_val = target.val();
+        if (!target_val) {
+          return;
+        }
+        this.sendMessage(target_val);
         return target.val('');
       } else {
         return this.onTypeFired();

@@ -77,16 +77,16 @@ a {
 }
 
 .sendbox {
+  float: left;
   background-image: url(https://c776950.ssl.cf2.rackcdn.com/assets/bg-noise-bar-fbf1d156b211fad69d3446b12190b4d6.png);
   border-top: 1px solid gray;
   background: #bbb;
-  width: 650px;
+  width: 600px;
   height: 40px;
   border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   outline: 0;
   border: 0;
-  padding: 5px;
+  padding: 9px;
   font-size: 16px;
   display: block;
   margin: auto;
@@ -107,13 +107,13 @@ body {
     font-family: Proxima, 'Proxima Nova', Arial;
 }
 
-h1, #titleeditor {
+h1, .titleeditor {
     font-family: Proxima, 'Proxima Nova', Arial;
     font-weight: bold;
     font-size: 56px;
 }
 
-h1.animatedheader, p.lead {
+.animatedheader, p.lead {
     animation: bounceDown .5s 0s ease both;
     transform-origin: top left;
     -webkit-animation: bounceDown .5s 0s ease both;
@@ -165,6 +165,7 @@ div.panel-name.panel {
 }
 
 @borderRadius: 10px;
+
 .darkBgShadow { text-shadow: 0 0 8px black; }
 .darkBoxShadow { box-shadow: 0 2px 20px black; }
 p.lead, h1, footer { .darkBgShadow; }
@@ -275,6 +276,22 @@ div.panel-chats {
     max-height: 600px;
 }
 
+.sendbar {
+  display: inline;
+}
+
+.sendbutton {
+  float: right;
+  width: 50px;
+  border-bottom-right-radius: @borderRadius !important;
+  border-radius: 0px;
+  margin-top: 0px;
+  border: 0px;
+  padding-top:11px;
+  padding-left: 7.5px;
+  padding-bottom: 9px;
+}
+
 /* footer */
 
 div.footer, footer {
@@ -302,7 +319,7 @@ div.footer, footer {
   font-weight: bold;
 }
 
-#titleeditor {
+.titleeditor {
   outline: none;
   background: transparent;
   border-radius: 25px;
