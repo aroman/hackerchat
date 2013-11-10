@@ -6,8 +6,7 @@ html {
 
 body {
   padding-top: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /*background: #1;*/
+  font: 14px Proxima, 'Proxima Nova', Arial;
   height: 100%;
   width: 100%;
 }
@@ -180,13 +179,17 @@ body {
   font-family: Proxima, 'Proxima Nova', Arial;
 }
 
+h4.modal-title {
+    font-family: Proxima, 'Proxima Nova', Arial;
+}
+
 h1, .titleeditor {
     font-family: Proxima, 'Proxima Nova', Arial;
     font-weight: bold;
     font-size: 56px;
 }
 
-.animatedheader, p.lead {
+.animatedheader, #header-block, p.lead {
     animation: bounceDown .5s 0s ease both;
     transform-origin: top left;
     -webkit-animation: bounceDown .5s 0s ease both;
@@ -432,7 +435,7 @@ p.lead {
     font-size: 24px!important;
 }
 
-p.intro-text {
+.intro-text {
   font-size: 24px!important;
 }
 
@@ -454,7 +457,6 @@ i.ion-log-out, i.nav-chats  {
 }
 
 .titleeditor, #header-block, #title {
-    background: black;
     padding: 0px;
     margin: 0px;
     max-width: 100%;
@@ -467,7 +469,6 @@ i.ion-log-out, i.nav-chats  {
 }
 
 h1, .titleeditor {
-    background: black;
     padding: 0px;
     margin: 0px;
     max-width: 100%;
@@ -479,7 +480,7 @@ h1, .titleeditor {
 
 i.nav-logout.ion-log-out {
     position: absolute;
-    top: 12px;
+    top: -12px;
     right: -12px;
 }
 
@@ -559,6 +560,11 @@ h1 {
   font-size: 36px;
   font-style: italic;
   font-family: 'Indie Flower', cursive;
+  animation: bounceDown .25 ease;
+  transform-origin: center;
+  -webkit-animation: bounceDown .25 ease;
+  -webkit-transform-origin: center;
+
 }
 
 textarea {
@@ -582,3 +588,31 @@ textarea {
 .modal-dialog {
   width: 750px;
 }
+
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-content .btn {
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 0 12px black;
+    border: 1px solid rgba(255,255,255,.5);
+}
+
+input.titleeditor:hover {
+    border-bottom: 1px dotted;
+    -webkit-box-sizing: border-box;
+}
+
+input.titleeditor:focus {
+    border-bottom: 1px solid;
+    -webkit-box-sizing: border-box;
+}
+
+input.titleeditor {
+    border-bottom: 1px solid black;
+    -webkit-box-sizing: border-box;
+}
+
