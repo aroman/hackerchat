@@ -57,7 +57,17 @@ app.get '/chats', (req, res) ->
     res.redirect "/"
   else
     user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
-      res.render 'chats', {title: 'HackerChat', user: user}
+      if err
+        res.send(500, err)
+      else if user is null
+        req.session.user_id = undefined
+        res.redirect "/"
+      else
+        res.render 'chats', {title: 'HackerChat', user: user}
+
+app.get '/logout', (req, res) ->
+  req.session = null
+  res.redirect '/'
 
 app.get '/chats/:id', (req, res) ->
   res.render 'chat', {title: 'HackerChat'}
