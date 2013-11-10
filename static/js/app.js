@@ -28,7 +28,7 @@
   };
 
   buildChatLine = function(user, body, date) {
-    return "<span>" + user + ": " + body + "<span class='timestamp'>" + date + "</span></span>";
+    return "<span><span class='userstamp'>" + user + "</span>: " + body + "<span class='timestamp'>" + date + "</span></span>";
   };
 
   window.ChatView = Backbone.View.extend({
