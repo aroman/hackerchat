@@ -219,18 +219,29 @@ p.lead, h1, footer { .darkBgShadow; }
   transition: all .25s;
 }
 
-.go:hover { box-shadow: 0 2px 20px #a4a445; }
+.go:hover { box-shadow: 0 2px 15px #57DC25; }
 
-/* account */
-
-section#account { .btn-group; margin: auto; position: absolute; right: 12px; top: 12px; z-index: 9001;
-  a { .btn; .btn-lg; .btn-primary; .btn-fancy; }
+.nav-chats {
+  position: absolute;
+  left: 25px;
+  margin-top: 20px;
+  margin-left: 15px;
+  font-size: 60px;
 }
 
-section#account.two-buttons {
-  a { border-radius: 0px; }
-  a:last-child { border-top-right-radius: @borderRadius; border-bottom-right-radius: @borderRadius;}
-  a:first-child { border-top-left-radius: @borderRadius; border-bottom-left-radius: @borderRadius;}
+.nav-logout {
+  position: absolute;
+  right: 25px;
+  font-size: 60px;
+  margin-top: 20px;
+  margin-right: 15px;
+}
+
+.nav-logout, .nav-chats {
+  &:hover {
+    color: #50bfa4;
+    cursor: pointer;
+  }
 }
 
 /* homepage */
@@ -328,4 +339,3 @@ div.footer, footer {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-

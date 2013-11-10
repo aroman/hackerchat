@@ -1,9 +1,8 @@
 extends layout
 
 block content
-  section.two-buttons#account
-    a(href="/chats") Chats 
-    a(href="/logout") Logout
+  i.nav-chats(onclick="location.href = '/chats'").ion-navicon
+  i.nav-logout(onclick="location.href = '/logout'").ion-log-out
   header
     input#title.titleeditor(value="#{title}", spellcheck="false")
     p.lead Share this chat: 

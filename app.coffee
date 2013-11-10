@@ -96,7 +96,7 @@ app.post '/', (req, res) ->
     res.send "You EEEEDIOT!!! YOU FORGOT THE `name` PARAM!!!"
 
 app.get '/chats', ensureSession, (req, res) ->
-  user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
+  user = models.User.findOne(_id: req.session.user_id).populate('chats').exec (err, user) ->
     if err
       res.send(500, err)
     else if user is null

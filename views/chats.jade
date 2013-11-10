@@ -1,8 +1,7 @@
 extends layout
 
 block content
-  section#account
-    a(href="/logout") Logout
+  i.nav-logout(onclick="location.href = '/logout'").ion-log-out
   header
     h1= title
     p.lead Howdy, #{user.name}!
@@ -10,7 +9,10 @@ block content
     div.panel.panel-chats.list-group
       div.panel-heading My Chats
         each chat, i in user.chats  
-          a.list-group-item.list-group-item-room(href="/chats/#{chat}") Chat ##{i+1}
+          if chat.title
+            a.list-group-item.list-group-item-room(href="/chats/#{chat._id}") #{chat.title}
+          else 
+            a.list-group-item.list-group-item-room(href="/chats/#{chat._id}") Chat ##{i+1}
         else
           .list-group-item.list-group-item-empty None so far :(
             small Click the button below to create a room.
