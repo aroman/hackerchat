@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  padding-top: 10px;
+  padding-top: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /*background: #1;*/
   height: 100%;
@@ -404,4 +404,71 @@ div.footer, footer {
 .ion-ios7-paperplane {
   font-size: 17px;
   vertical-align: bottom;
+}
+
+@media all and (max-width: @screen-sm-max) {
+div.container form {
+    background: radial-gradient(ellipse at center, rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 60%);
+}
+
+p.lead {
+    font-size: 24px;
+}
+
+div.panel-heading {
+    font-size: 28pxpx;
+}
+
+.list-group-item {
+    margin: 0px -18px;
+    border-radius: 0px;
+}
+
+i.ion-log-out, i.nav-chats  {
+    font-size: 36px;
+    right: 15px;
+    z-index: 9010;
+}
+
+div.container header h1, #title {
+    background: black;
+    font-size: 38px;
+    padding: 2px;
+    margin: 0px -15px;
+    max-width: 100%;
+    border-radius: 0px;
+    z-index: 50;
+}
+
+i.ion-log-out {
+    top: -12px;
+    right: -12px;
+}
+
+i.nav-chats {
+    margin-top: 6px!important;
+    margin-left: -12px!important;
+    display: block;
+    width: 50px;
+    margin-top: -12px;
+}
+
+div.panel-heading {
+    font-size: 28px;
+}
+
+iframe, footer  { display: none; }
+
+#about, p#share, span.timestamp { display: none; }
+
+
+div.sendbar button {
+    position: absolute; right: 2px; 
+}
+
+#chatbox {
+    height:365px;
+}
+
+
 }
