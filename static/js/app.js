@@ -32,7 +32,7 @@
 
   buildChatLine = function(user, body, date, color) {
     date = moment(date).format('h:mm a');
-    return "<span><span style='color:" + color + "' class='userstamp'>" + user + "</span>: " + body + "<span class='timestamp'>" + date + "</span></span>";
+    return "<span><span style='color:" + color + "' class='userstamp'>" + user + "</span><span class='timestamp'>" + date + "</span>: " + body + "</span>";
   };
 
   window.ChatView = Backbone.View.extend({
