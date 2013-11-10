@@ -11,3 +11,9 @@ $(window).resize(function() {
         $(window).height() - $('window').height() - 300
     );
 });
+
+$(document).ready(function() {
+    $('#chatbox').height(
+        $(window).height() - $('window').height() - 300
+    );
+});
