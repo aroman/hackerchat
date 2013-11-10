@@ -34,6 +34,21 @@ mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerc
   console.log "Database connection established".yellow
   server.listen PORT
 
+COLOR_ID = 0
+
+getSaneColor = ->
+  sane_colors = [
+    "#FFD350"
+    "#FF8250"
+    "#6464F1"
+    "#4BF0A9"
+  ]
+  to_return = sane_colors[COLOR_ID]
+  COLOR_ID += 1
+  if COLOR_ID == sane_colors.length
+    COLOR_ID = 0
+  return to_return
+
 ensureSession = (req, res, next) ->
   if not req.session.user_id
     res.redirect "/?whence=#{req.url}"
@@ -69,6 +84,8 @@ app.post '/', (req, res) ->
         console.log "User IS null!"
         user = new models.User()
         user.name = req.body.name
+        user.color = getSaneColor()
+        console.log user
         user.save (err) ->
           if err
             res.send(500, err);
@@ -133,13 +150,14 @@ io.sockets.on 'connection', (socket) ->
     socket.join chat_id
     room = chat_id
 
-  socket.on 'msg_send', (user, msg) ->
+  socket.on 'msg_send', (user, msg, color) ->
     date = new Date().toISOString()
-    io.sockets.in(room).emit 'new_msg', {user: user, msg: msg, date: date}
+    io.sockets.in(room).emit 'new_msg', {user: user, msg: msg, date: date, color: color}
     msg_obj = {
       username: user
       body: msg
       date: date
+      color: color
     }
     models.Chat.update {_id: room}, {$push: {messages: msg_obj}}, (err) ->
       if err

@@ -27,8 +27,8 @@
     }
   };
 
-  buildChatLine = function(user, body, date) {
-    return "<span><span class='userstamp'>" + user + "</span>: " + body + "<span class='timestamp'>" + date + "</span></span>";
+  buildChatLine = function(user, body, date, color) {
+    return "<span><span style='color:" + color + "' class='userstamp'>" + user + "</span>: " + body + "<span class='timestamp'>" + date + "</span></span>";
   };
 
   window.ChatView = Backbone.View.extend({
@@ -42,12 +42,12 @@
       this.chat = chat;
       this.user = user;
       socket.on('new_msg', function(data) {
-        return _this.onNewMsg(data.user, data.msg, data.date);
+        return _this.onNewMsg(data.user, data.msg, data.date, data.color);
       });
       socket.emit('subscribe', this.chat._id);
       str = "";
       _.each(chat.messages, function(msg) {
-        return str += "<br> " + (buildChatLine(msg.username, msg.body, msg.date));
+        return str += "<br> " + (buildChatLine(msg.username, msg.body, msg.date, msg.color));
       });
       $("#chatbox").html(str);
       $("input").focus();
@@ -59,8 +59,8 @@
     scrollToBottom: function() {
       return $("#chatbox").scrollTop($('#chatbox')[0].scrollHeight);
     },
-    onNewMsg: function(user, msg, date) {
-      $("#chatbox").append("<br>" + buildChatLine(user, msg, date));
+    onNewMsg: function(user, msg, date, color) {
+      $("#chatbox").append("<br>" + buildChatLine(user, msg, date, color));
       this.scrollToBottom();
       return _.delay(this.scrollToBottom, 250);
     },
@@ -79,7 +79,7 @@
       console.log("Sending message");
       return transformText(message, function(le_text) {
         console.log("transformed text: " + le_text);
-        return socket.emit('msg_send', _this.user.name, le_text);
+        return socket.emit('msg_send', _this.user.name, le_text, _this.user.color);
       });
     },
     onTypeFired: function() {}

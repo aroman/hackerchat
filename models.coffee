@@ -7,6 +7,7 @@ ChatSchema = new mongoose.Schema
 
 UserSchema = new mongoose.Schema
   name: String
+  color: String
   chats: [{type: mongoose.Schema.ObjectId, ref: 'chat'}]
 
 module.exports =

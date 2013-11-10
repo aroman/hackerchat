@@ -19,8 +19,8 @@ transformText = (text, cb) ->
   else
     cb text
 
-buildChatLine = (user, body, date) ->
-  return "<span><span class='userstamp'>#{user}</span>: #{body}<span class='timestamp'>#{date}</span></span>"
+buildChatLine = (user, body, date, color) ->
+  return "<span><span style='color:#{color}' class='userstamp'>#{user}</span>: #{body}<span class='timestamp'>#{date}</span></span>"
 
 window.ChatView = Backbone.View.extend
   el: 'body'
@@ -33,13 +33,13 @@ window.ChatView = Backbone.View.extend
     @user = user
 
     socket.on 'new_msg', (data) =>
-      @onNewMsg data.user, data.msg, data.date
+      @onNewMsg data.user, data.msg, data.date, data.color
 
     socket.emit 'subscribe', @chat._id
 
     str = ""
     _.each chat.messages, (msg) ->
-      str += "<br> #{buildChatLine(msg.username, msg.body, msg.date)}"
+      str += "<br> #{buildChatLine(msg.username, msg.body, msg.date, msg.color)}"
     $("#chatbox").html str
     $("input").focus()
 
@@ -51,8 +51,8 @@ window.ChatView = Backbone.View.extend
   scrollToBottom: ->
     $("#chatbox").scrollTop $('#chatbox')[0].scrollHeight
 
-  onNewMsg: (user, msg, date) ->
-    $("#chatbox").append("<br>" + buildChatLine(user, msg, date))
+  onNewMsg: (user, msg, date, color) ->
+    $("#chatbox").append("<br>" + buildChatLine(user, msg, date, color))
     @scrollToBottom()
     _.delay(@scrollToBottom, 250)
 
@@ -68,7 +68,7 @@ window.ChatView = Backbone.View.extend
       console.log "Sending message"
       transformText message, (le_text) => 
         console.log "transformed text: #{le_text}"
-        socket.emit 'msg_send', @user.name, le_text
+        socket.emit 'msg_send', @user.name, le_text, @user.color
 
   onTypeFired: () ->
     # console.log "User is typing...."
