@@ -20,6 +20,9 @@ app.use express.favicon()
 app.use express.logger 'dev'
 app.use express.json()
 app.use express.urlencoded()
+app.use(express.bodyParser())
+app.use(express.cookieParser())
+app.use(express.cookieSession(secret: "supersecret"))
 app.use express.methodOverride()
 app.use app.router
 app.use express.errorHandler()
@@ -31,19 +34,32 @@ mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerc
   server.listen PORT
 
 app.get '/', (req, res) ->
-  res.render 'app', {title: 'HackerChat'}
+  if req.session.user_id
+    res.redirect "/chats"
+  else
+    res.render 'index', {title: 'HackerChat'}
 
-io.sockets.on 'connection', (socket) ->
-
-  socket.on "auth", (req) ->
-    console.log "Got auth event"
+app.post '/', (req, res) ->
+  name = req.body.name
+  if name
     user = new models.User()
-    user.name = req.name
+    user.name = req.body.name
     user.save (err) ->
       if err
-        console.log "Err from create user: #{err}"
-      console.log user
-      socket.emit "auth", user
+        res.send(500, err);
+      req.session.user_id = user._id
+      res.redirect "/chats"
+  else
+    res.send "You EEEEDIOT!!! YOU FORGOT THE `name` PARAM!!!"
 
-  socket.on 'derp', (data) ->
-    console.log "Got this from the client: #{data}"
+app.get '/chats', (req, res) ->
+  if not req.session.user_id
+    res.redirect "/"
+  else
+    user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
+      res.render 'chats', {title: 'HackerChat', user: user}
+
+app.get '/chats/:id', (req, res) ->
+  res.render 'chat', {title: 'HackerChat'}
+
+io.sockets.on 'connection', (socket) ->
