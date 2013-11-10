@@ -1,13 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p.lead Hello! You are new. You need to tell us your name!
+  section#about
+    h1= title
+  header 
+    h1= title
+    p.lead Hello! You are new. You need to tell us your name!
   //- embed(src="/img/logo.svg", style="float:left", type="image/svg+xml")
-  form(method="post")
-    div.panel.panel-default.panel-name
-      div.panel-heading HELLO
-        small my name is
-      div.panel-body
-        input#namebox(type="text", name="name", placeholder="Name", required)
-    input.go(type="submit", value="Let's Chat!")
+  section#login
+    form(method="post")
+      div.panel.panel-default.panel-name
+        div.panel-heading HELLO
+          small my name is
+        div.panel-body
+          input#namebox(type="text", name="name", placeholder="Name", required)
+      input.go(type="submit", value="Let's Chat!")  

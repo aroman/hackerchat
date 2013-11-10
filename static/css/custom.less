@@ -79,11 +79,16 @@ a {
 }
 
 #chatbox>span {
-  animation: slideleft .4s .2s ease both;
+  animation: flipInX .4s .2s ease both;
   transform-origin: top left;
-  -webkit-animation: slideleft .4s .2s ease both;
+  -webkit-animation: flipInX .4s .2s ease both;
   -webkit-transform-origin: top left;
   display: block;
+  line-height: 1.4em;
+}
+
+#chatbox>br {
+  display: none;
 }
 
 .sendbox {
