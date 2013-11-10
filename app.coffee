@@ -34,6 +34,12 @@ mongoose.connect 'mongodb://dbuser:pilotpwva@ds053808.mongolab.com:53808/hackerc
   console.log "Database connection established".yellow
   server.listen PORT
 
+ensureSession = (req, res, next) ->
+  if not req.session.user_id
+    res.redirect "/?whence=#{req.url}"
+  else
+    next()
+
 app.get '/', (req, res) ->
   if req.session.user_id
     res.redirect "/chats"
@@ -42,15 +48,23 @@ app.get '/', (req, res) ->
 
 app.post '/', (req, res) ->
   name = req.body.name
+  whence = req.query.whence
+
+  doRedirect = ->
+    if whence
+      res.redirect whence
+    else
+      res.redirect "/chats"
+
   if name
     console.log "Got POST with name #{name}"
     user = models.User.findOne {name: name}, (err, user) ->
       if err
         res.send(500, err)
-      else if user isnt null
+      if user isnt null
         console.log "User NOT null!"
         req.session.user_id = user._id
-        res.redirect "/chats"
+        doRedirect()
       else
         console.log "User IS null!"
         user = new models.User()
@@ -59,13 +73,12 @@ app.post '/', (req, res) ->
           if err
             res.send(500, err);
           req.session.user_id = user._id
-          res.redirect "/chats"
+          doRedirect()
+
   else
     res.send "You EEEEDIOT!!! YOU FORGOT THE `name` PARAM!!!"
 
-app.get '/chats', (req, res) ->
-  if not req.session.user_id
-    res.redirect "/"
+app.get '/chats', ensureSession, (req, res) ->
   user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
     if err
       res.send(500, err)
@@ -75,9 +88,7 @@ app.get '/chats', (req, res) ->
     else
       res.render 'chats', {title: TITLE, user: user}
 
-app.get '/new-chat', (req, res) ->
-  if not req.session.user_id
-    res.redirect "/"
+app.get '/new-chat', ensureSession, (req, res) ->
   user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
     if err
       res.send(500, err)
@@ -98,9 +109,7 @@ app.get '/new-chat', (req, res) ->
             else
               res.redirect "/chats/#{chat._id}"
 
-app.get '/chats/:chat_id', (req, res) ->
-  if not req.session.user_id
-    res.redirect "/"
+app.get '/chats/:chat_id', ensureSession, (req, res) ->
   user = models.User.findOne {_id: req.session.user_id}, (err, user) ->
     if err
       res.send(500, err)
