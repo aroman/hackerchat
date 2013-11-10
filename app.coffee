@@ -39,9 +39,9 @@ COLOR_ID = 0
 
 getSaneColor = ->
   sane_colors = [
-    "#D16B23"
     "#BE3625"
-    "#6464F1"
+    "#0367E9"
+    "#2D8306"
     "#4BF0A9"
   ]
   to_return = sane_colors[COLOR_ID]
