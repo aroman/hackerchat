@@ -52,11 +52,14 @@ a {
   padding-bottom: 19px;
 }
 
+/* chats */
+
 #chat {
     max-width: 650px;
     border-radius: 10px;
     margin: auto;
     box-shadow: 0 2px 20px black;
+    position: relative;
 }
 
 #chatbox {
@@ -74,6 +77,19 @@ a {
   br:first-child {
     display: none;
   }
+}
+
+
+#chatbox {
+    font-size: 18px;
+    overflow-x: auto;
+    max-height: 600px;
+}
+
+#chatbox {
+    font-size: 18px;
+    overflow-x: auto;
+    max-height: 600px;
 }
 
 .sendbox {
@@ -108,7 +124,7 @@ body {
   font-family: Proxima, 'Proxima Nova', Arial;
 }
 
-h1, #titleeditor {
+h1, .titleeditor {
     font-family: Proxima, 'Proxima Nova', Arial;
     font-weight: bold;
     font-size: 56px;
@@ -268,14 +284,6 @@ div.panel-chats {
   }
 }
 
-/* chat box */
-
-#chatbox {
-    font-size: 18px;
-    overflow-x: auto;
-    max-height: 600px;
-}
-
 /* footer */
 
 div.footer, footer {
@@ -303,7 +311,7 @@ div.footer, footer {
   font-weight: bold;
 }
 
-#titleeditor {
+.titleeditor {
   outline: none;
   background: transparent;
   border-radius: 25px;
@@ -312,4 +320,15 @@ div.footer, footer {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.sendbutton {
+  .btn; .btn-success; .btn-fancy;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
