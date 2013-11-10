@@ -160,6 +160,8 @@ p.lead, h1, footer { .darkBgShadow; }
   border-radius: @borderRadius;
   margin-top: 30px;
   width: 350px;
+  display: block;
+  max-width: 100%;
   border-radius: 10px;
   font-size: 28px;
   animation: fade .6s .6s ease both;
@@ -207,6 +209,31 @@ div.panel-chats {
       border: none;
       text-align: center;
     }
+  }
+}
+
+#chats .panel-heading {
+  line-height: 2em;
+  padding: 0px 15px 15px 15px;
+  .list-group-item:first-child, .list-group-item:nth-child(2) {
+      border-radius: @borderRadius;
+  }
+  .list-group-item {
+      line-height: 1em;
+  }
+  .list-group-item:nth-child(2) {
+      margin-top: -67px;
+  }
+  .list-group-item:last-child {
+      border-bottom-left-radius: @borderRadius;
+      bottom-right-radius: @borderRadius;
+  }
+  small {
+      display: block;
+      line-height: 1em;
+      font-size: 12px;
+      opacity: .7;
+      padding: 8px 0px;
   }
 }
 
