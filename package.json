@@ -11,7 +11,8 @@
     "mongoose": "*",
     "less-middleware": "*",
     "colors": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "zeroclipboard": "*"
   },
   "engines": {
     "node": ">=0.4.0"

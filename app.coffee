@@ -3,6 +3,7 @@ sio = require 'socket.io'
 http = require 'http'
 path = require 'path'
 
+zc = require 'ZeroClipboard'
 mongoose = require 'mongoose'
 colors = require 'colors'
 

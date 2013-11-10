@@ -56,7 +56,7 @@
       }
       str = "";
       _.each(chat.messages, function(msg) {
-        return str += "" + (buildChatLine(msg.username, msg.body, msg.date, msg.color));
+        return str += "<span class='prevmsg'>" + (buildChatLine(msg.username, msg.body, msg.date, msg.color)) + "</span>";
       });
       $("#chatbox").html(str);
       $(window).on('resize', this.scrollToBottom);

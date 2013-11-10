@@ -48,7 +48,7 @@ window.ChatView = Backbone.View.extend
 
     str = ""
     _.each chat.messages, (msg) ->
-      str += "#{buildChatLine(msg.username, msg.body, msg.date, msg.color)}"
+      str += "<span class='prevmsg'>#{buildChatLine(msg.username, msg.body, msg.date, msg.color)}</span>"
     $("#chatbox").html str
 
     $(window).on 'resize', @scrollToBottom
