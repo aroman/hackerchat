@@ -42,13 +42,23 @@ app.get '/', (req, res) ->
 app.post '/', (req, res) ->
   name = req.body.name
   if name
-    user = new models.User()
-    user.name = req.body.name
-    user.save (err) ->
+    console.log "Got POST with name #{name}"
+    user = models.User.findOne {name: name}, (err, user) ->
       if err
-        res.send(500, err);
-      req.session.user_id = user._id
-      res.redirect "/chats"
+        res.send(500, err)
+      else if user isnt null
+        console.log "User NOT null!"
+        req.session.user_id = user._id
+        res.redirect "/chats"
+      else
+        console.log "User IS null!"
+        user = new models.User()
+        user.name = req.body.name
+        user.save (err) ->
+          if err
+            res.send(500, err);
+          req.session.user_id = user._id
+          res.redirect "/chats"
   else
     res.send "You EEEEDIOT!!! YOU FORGOT THE `name` PARAM!!!"
 
