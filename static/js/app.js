@@ -19,7 +19,7 @@
         jsonpCallback: "xkcddata",
         async: false,
         success: function(data) {
-          return cb("<img style='width:300px; height: auto' src='" + data.img + "'>");
+          return cb("<img style='width:600px; height: auto' src='" + data.img + "'>");
         }
       }).responseText;
     } else {
@@ -51,7 +51,10 @@
       });
       $("#chatbox").html(str);
       $("input").focus();
-      return this.scrollToBottom();
+      this.scrollToBottom();
+      return $(window).load(function() {
+        return this.scrollToBottom();
+      });
     },
     scrollToBottom: function() {
       return $("#chatbox").scrollTop($('#chatbox')[0].scrollHeight);
