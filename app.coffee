@@ -7,6 +7,7 @@ zc = require 'zeroclipboard'
 mongoose = require 'mongoose'
 colors = require 'colors'
 
+secrets = require './secrets'
 models = require './models'
 
 TITLE = "HackerChat"
@@ -26,14 +27,14 @@ app.use express.json()
 app.use express.urlencoded()
 app.use(express.bodyParser())
 app.use(express.cookieParser())
-app.use(express.cookieSession(secret: "supersecret"))
+app.use(express.cookieSession(secret: secrets.COOKIE_SECRET || "supersecret"))
 app.use express.methodOverride()
 app.use app.router
 app.use express.errorHandler()
 app.use(require('less-middleware')({ src: __dirname + '/static', force: true, sourceMap: true }))
 app.use express.static(path.join(__dirname, 'static'))
 
-mongoose.connect 'mongodb://dbuser:pilotpwva@ds053798.mongolab.com:53798/hackerchat', ->
+mongoose.connect secrets.MONGO_URI, ->
   console.log "Database connection established".yellow
   server.listen PORT
 
