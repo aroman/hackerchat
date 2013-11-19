@@ -7,14 +7,15 @@ lib-cov
 *.pid
 *.gz
 
-*.DS_STORE
+.DS_Store
 ds_store
 desktop.ini
  
 pids
 logs
 results
- 
+
 npm-debug.log
 
-style.css
+/static/css/style.css
+/secrets.coffee
