@@ -1,4 +1,8 @@
-/*PilotPhilly color: FC853A*/
+/* PilotPhilly color: FC853A */
+/* Out LESS is all over the place, really need to reorgainze this sometime */
+
+/* base */
+
 html {
   height: 100%;
   width: 100%;
@@ -33,7 +37,8 @@ a {
   font-size: 25px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
+/* from Bootstrap marketing template */
+
 .header,
 .marketing,
 .footer {
@@ -41,16 +46,301 @@ a {
   padding-right: 15px;
 }
 
-/* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
 }
-/* Make the masthead heading the same height as the navigation */
+
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
   padding-bottom: 19px;
+}
+
+body {
+  background-color: darkGray;
+  background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/dark_matter.png);
+  font-family: Proxima, 'Proxima Nova', Arial;
+}
+
+/* hack modal */
+
+h4.modal-title {
+    font-family: Proxima, 'Proxima Nova', Arial;
+}
+
+h1, .titleeditor {
+    font-family: Proxima, 'Proxima Nova', Arial;
+    font-weight: bold;
+    font-size: 56px;
+}
+
+textarea {
+  text-align: left;
+  border-radius: 10px;
+  background: transparent;
+  font-family: monospace;
+  padding: 0;
+  outline: 0;
+  font-size: 18px;
+  border: 0;
+  resize: none;
+  color: white;
+}
+
+.CodeMirror, .cm-s-monokai .CodeMirror-gutters {
+  background: #2e3338 !important;
+  font-size: 16px;
+}
+
+.modal-dialog {
+  width: 750px;
+}
+
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-content .btn {
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 0 12px black;
+    border: 1px solid rgba(255,255,255,.5);
+}
+
+/* homepage */
+
+.panel {
+    user-select: none;
+    animation: googlenow1 .7s .2s ease both;
+    transform-origin: top left;
+    -webkit-animation: googlenow1 .4s .2s ease both;
+    -webkit-transform-origin: top left;
+}
+
+div.panel-name.panel {
+  max-width: 350px;
+  margin: auto;
+  background: white;
+  border: 1px solid black;
+  overflow: hidden;
+  border-radius: @borderRadius;
+  .darkBoxShadow;
+  .panel-heading {
+    background-color: #C0392B;
+    color: white;
+    font-size: 40px;
+    box-shadow: rgba(255,255,255,0.7) 0px 2px 0px inset;
+    small {
+      display: block;
+      letter-spacing: 1px;
+      font-size: 20px;
+    }
+  }
+  .panel-body {
+    padding: 0px;
+    #namebox {
+      display: block;
+      width: 100%;
+      font-size: 50px;
+      padding: 16px;
+      font-family: Proxima, 'Proxima Nova', Arial;
+      box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+      border: none;
+      text-align: center;
+    }
+  }
+}
+
+@borderRadius: 10px;
+.darkBgShadow { text-shadow: 0 0 8px black; }
+.darkBoxShadow { box-shadow: 0 2px 20px black; }
+p.lead, h1, footer { .darkBgShadow; }
+
+.btn-fancy {
+      box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset, 0 2px 20px black;
+}
+.btn-fancy:hover {
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3))!important;
+}
+.btn-fancy:active {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5))!important;
+}
+
+.go { .btn; .btn-success; .btn-block; .btn-fancy; .btn-lg; .darkBoxShadow;
+  margin: auto;
+  border-radius: @borderRadius;
+  margin-top: 30px;
+  width: 350px;
+  display: block;
+  max-width: 100%;
+  border-radius: 10px;
+  font-size: 28px;
+  animation: fade .6s .6s ease both;
+  transform-origin: center;
+  -webkit-animation: fade .6s .6s ease both;
+  -webkit-transform-origin: top left;
+  transition: all .25s;
+}
+
+.go:hover { box-shadow: 0 2px 15px #57DC25; }
+
+.nav-chats {
+  position: absolute;
+  left: 25px;
+  margin-top: 20px;
+  margin-left: 15px;
+  font-size: 60px;
+}
+
+.nav-logout {
+  position: absolute;
+  right: 25px;
+  font-size: 60px;
+  margin-top: 20px;
+  margin-right: 15px;
+}
+
+.nav-logout, .nav-chats {
+  &:hover {
+    color: #50bfa4;
+    cursor: pointer;
+  }
+}
+
+/* list of chats  */
+
+div.panel-chats {
+  max-width: 350px;
+  margin: auto;
+  background: white;
+  border: 1px solid black;
+  overflow: hidden;
+  border-radius: @borderRadius;
+  .darkBoxShadow;
+  .panel-heading {
+    background-color: #2980b9;
+    color: white;
+    font-size: 40px;
+    box-shadow: rgba(255,255,255,0.7) 0px 2px 0px inset;
+    small {
+      display: block;
+      letter-spacing: 1px;
+      font-size: 20px;
+    }
+  }
+  .panel-body {
+    padding: 0px;
+    #namebox {
+      display: block;
+      width: 100%;
+      font-size: 50px;
+      padding: 16px;
+      font-family: Proxima, 'Proxima Nova', Arial;
+      box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+      border: none;
+      text-align: center;
+    }
+  }
+}
+
+#chats .panel-heading {
+  line-height: 2em;
+  padding: 0px 15px 15px 15px;
+  .list-group-item:first-child {
+      border-top-left-radius: @borderRadius;
+      border-top-right-radius: @borderRadius;
+  }
+  .list-group-item {
+      line-height: 1em;
+  }
+  .list-group-item:last-child {
+      border-bottom-left-radius: @borderRadius;
+      bottom-bottom-right-radius: @borderRadius;
+  }
+  small {
+      display: block;
+      line-height: 1em;
+      font-size: 12px;
+      opacity: .7;
+      padding: 8px 0px;
+  }
+}
+
+/* footer */
+
+div.footer, footer {
+    animation: fade .25s 1s ease both;
+    transform-origin: center;
+    -webkit-animation: fade .25s 1s ease both;
+    -webkit-transform-origin: center;
+    text-align: center;
+    padding: 20px 0px;
+    font-size: 18px;
+    margin-top: 20px
+}
+
+.pp-color {
+  color: #FC853A;
+}
+
+/* icons */
+
+.twitter-link {
+  color: #55acee;
+}
+
+.timestamp {
+  color: gray;
+  font-size: 14px;
+  top: 0px;
+  position: absolute;
+  right: 0px;
+}
+
+.userstamp {
+  font-weight: bold;
+}
+
+.titleeditor {
+  outline: none;
+  background: transparent;
+  border-radius: 25px;
+  border: 0;
+  color: rgb(200, 200, 200);
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#linktoshare {
+  font-size: 14px;
+}
+
+.ion-clipboard {
+  cursor: pointer;
+}
+
+.ion-email {
+  color: rgb(200, 200, 200);
+  // font-size: 30px;
+  padding-top: 5px;
+  margin-left: 5px;
+}
+
+.ion-social-twitter {
+  color: rgb(200, 200, 200);
+  margin-left: 5px;
+}
+
+.lead {
+  font-size: 34px;
+}
+
+.ion-ios7-paperplane {
+  font-size: 17px;
+  vertical-align: bottom;
 }
 
 /* chats */
@@ -163,377 +453,115 @@ a {
   }
 }
 
-.footer {
-  margin-top: 150px;
-  text-align: center;
-  text-size: 14px;
-}
-
-.pp-color {
-  color: #FC853A;
-}
-
-body {
-  background-color: darkGray;
-  background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/dark_matter.png);
-  font-family: Proxima, 'Proxima Nova', Arial;
-}
-
-h4.modal-title {
-    font-family: Proxima, 'Proxima Nova', Arial;
-}
-
-h1, .titleeditor {
-    font-family: Proxima, 'Proxima Nova', Arial;
-    font-weight: bold;
-    font-size: 56px;
-}
-
-.animatedheader, #header-block, p.lead {
-    animation: bounceDown .5s 0s ease both;
-    transform-origin: top left;
-    -webkit-animation: bounceDown .5s 0s ease both;
-    -webkit-transform-origin: top left;
-}
-
-/* homepage */
-
-.panel {
-    user-select: none;
-    animation: googlenow1 .7s .2s ease both;
-    transform-origin: top left;
-    -webkit-animation: googlenow1 .4s .2s ease both;
-    -webkit-transform-origin: top left;
-}
-
-div.panel-name.panel {
-  max-width: 350px;
-  margin: auto;
-  background: white;
-  border: 1px solid black;
-  overflow: hidden;
-  border-radius: @borderRadius;
-  .darkBoxShadow;
-  .panel-heading {
-    background-color: #C0392B;
-    color: white;
-    font-size: 40px;
-    box-shadow: rgba(255,255,255,0.7) 0px 2px 0px inset;
-    small {
-      display: block;
-      letter-spacing: 1px;
-      font-size: 20px;
-    }
-  }
-  .panel-body {
-    padding: 0px;
-    #namebox {
-      display: block;
-      width: 100%;
-      font-size: 50px;
-      padding: 16px;
-      font-family: Proxima, 'Proxima Nova', Arial;
-      box-shadow: inset 0 0 2px rgba(0,0,0,.5);
-      border: none;
-      text-align: center;
-    }
-  }
-}
-
-@borderRadius: 10px;
-.darkBgShadow { text-shadow: 0 0 8px black; }
-.darkBoxShadow { box-shadow: 0 2px 20px black; }
-p.lead, h1, footer { .darkBgShadow; }
-
-.btn-fancy {
-      box-shadow: rgba(255,255,255,0.7) 0px 1px 0px inset, 0 2px 20px black;
-}
-.btn-fancy:hover {
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3))!important;
-}
-.btn-fancy:active {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5))!important;
-}
-
-.go { .btn; .btn-success; .btn-block; .btn-fancy; .btn-lg; .darkBoxShadow;
-  margin: auto;
-  border-radius: @borderRadius;
-  margin-top: 30px;
-  width: 350px;
-  display: block;
-  max-width: 100%;
-  border-radius: 10px;
-  font-size: 28px;
-  animation: fade .6s .6s ease both;
-  transform-origin: center;
-  -webkit-animation: fade .6s .6s ease both;
-  -webkit-transform-origin: top left;
-  transition: all .25s;
-}
-
-.go:hover { box-shadow: 0 2px 15px #57DC25; }
-
-.nav-chats {
-  position: absolute;
-  left: 25px;
-  margin-top: 20px;
-  margin-left: 15px;
-  font-size: 60px;
-}
-
-.nav-logout {
-  position: absolute;
-  right: 25px;
-  font-size: 60px;
-  margin-top: 20px;
-  margin-right: 15px;
-}
-
-.nav-logout, .nav-chats {
-  &:hover {
-    color: #50bfa4;
-    cursor: pointer;
-  }
-}
-
-/* homepage */
-div.panel-chats {
-  max-width: 350px;
-  margin: auto;
-  background: white;
-  border: 1px solid black;
-  overflow: hidden;
-  border-radius: @borderRadius;
-  .darkBoxShadow;
-  .panel-heading {
-    background-color: #2980b9;
-    color: white;
-    font-size: 40px;
-    box-shadow: rgba(255,255,255,0.7) 0px 2px 0px inset;
-    small {
-      display: block;
-      letter-spacing: 1px;
-      font-size: 20px;
-    }
-  }
-  .panel-body {
-    padding: 0px;
-    #namebox {
-      display: block;
-      width: 100%;
-      font-size: 50px;
-      padding: 16px;
-      font-family: Proxima, 'Proxima Nova', Arial;
-      box-shadow: inset 0 0 2px rgba(0,0,0,.5);
-      border: none;
-      text-align: center;
-    }
-  }
-}
-
-#chats .panel-heading {
-  line-height: 2em;
-  padding: 0px 15px 15px 15px;
-  .list-group-item:first-child {
-      border-top-left-radius: @borderRadius;
-      border-top-right-radius: @borderRadius;
-  }
-  .list-group-item {
-      line-height: 1em;
-  }
-  .list-group-item:last-child {
-      border-bottom-left-radius: @borderRadius;
-      bottom-bottom-right-radius: @borderRadius;
-  }
-  small {
-      display: block;
-      line-height: 1em;
-      font-size: 12px;
-      opacity: .7;
-      padding: 8px 0px;
-  }
-}
-
-/* footer */
-
-div.footer, footer {
-    animation: fade .25s 1s ease both;
-    transform-origin: center;
-    -webkit-animation: fade .25s 1s ease both;
-    -webkit-transform-origin: center;
-    text-align: center;
-    padding: 20px 0px;
-    font-size: 18px;
-    margin-top: 20px
-}
-
-.twitter-link {
-  color: #55acee;
-}
-
-.timestamp {
-  color: gray;
-  font-size: 14px;
-  top: 0px;
-  position: absolute;
-  right: 0px;
-}
-
-.userstamp {
-  font-weight: bold;
-}
-
-.titleeditor {
-  outline: none;
-  background: transparent;
-  border-radius: 25px;
-  border: 0;
-  color: rgb(200, 200, 200);
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-#linktoshare {
-  font-size: 14px;
-}
-
-.ion-clipboard {
-  cursor: pointer;
-}
-
-.ion-email {
-  color: rgb(200, 200, 200);
-  // font-size: 30/x;
-  padding-top: 5px;
-  margin-left: 5px;
-}
-
-.ion-social-twitter {
-  color: rgb(200, 200, 200);
-  margin-left: 5px;
-}
-
-.lead {
-  font-size: 34px;
-}
-
-.ion-ios7-paperplane {
-  font-size: 17px;
-  vertical-align: bottom;
-}
-
-
+/* <3 mobile */
 
 @media all and (max-width: @screen-sm-max) {
 
-div.container form {
-    background: radial-gradient(ellipse at center, rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 60%);
-}
-
-p.lead {
+  div.container form {
+      background: radial-gradient(ellipse at center, rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 60%);
+  }
+  
+  p.lead {
+      font-size: 24px!important;
+  }
+  
+  .intro-text {
     font-size: 24px!important;
-}
-
-.intro-text {
-  font-size: 24px!important;
-}
-
-a { -webkit-tap-highlight-color: rgba(255,0,0,.5); }
-
-div.panel-heading {
-    font-size: 28px;
-}
-
-.list-group-item {
-    margin: 0px -18px;
-    border-radius: 0px;
-}
-
-i.ion-log-out, i.nav-chats  {
-    font-size: 36px;
-    right: 15px;
-    z-index: 9010;
-}
-
-.titleeditor, #header-block, #title {
-    padding: 0px;
-    margin: 0px;
-    max-width: 100%;
-    border-radius: 0px!important;
-    z-index: 50;
-    h1 {
-          font-size: 36px!important;
-          line-height: 1em;
-    }
-}
-
-h1, .titleeditor {
-    padding: 0px;
-    margin: 0px;
-    max-width: 100%;
-    border-radius: 0px!important;
-    z-index: 50;
-    font-size: 36px!important;
-    line-height: 1em;
-}
-
-i.nav-logout.ion-log-out {
-    position: absolute;
-    top: -12px;
-    right: -12px;
-}
-
-i.nav-chats {
-    margin-top: 6px!important;
-    margin-left: -12px!important;
-    display: block;
-    width: 50px;
-    margin-top: -12px;
-}
-
-#chats div.panel-heading {
-    font-size: 28px!important;
-    line-height: 1.2em!important;
-}
-
-.list-item { border-radius: 0px!important; }
-
-iframe, footer  { display: none; }
-
-.nameprompt, #header-block img, #about, p#share, span.timestamp { display: none!important; }
-
-
-div.sendbar button {
-    position: absolute; right: 2px; 
-}
-
-div.sendbar input { padding-left: 12px; 
-
-::-webkit-input-placeholder {
-   color: darkGray;
-}
-
-:-moz-placeholder { 
-   color: darkGray;  
-}
-
-::-moz-placeholder {  
-   color: darkGray;  
-}
-
-:-ms-input-placeholder {  
-   color: darkGray;  
-}
-}
-
-#chatbox {
-    height:365px!important;
-}
-
+  }
+  
+  a { -webkit-tap-highlight-color: rgba(255,0,0,.5); }
+  
+  div.panel-heading {
+      font-size: 28px;
+  }
+  
+  .list-group-item {
+      margin: 0px -18px;
+      border-radius: 0px;
+  }
+  
+  i.ion-log-out, i.nav-chats  {
+      font-size: 36px;
+      right: 15px;
+      z-index: 9010;
+  }
+  
+  .titleeditor, #header-block, #title {
+      padding: 0px;
+      margin: 0px;
+      max-width: 100%;
+      border-radius: 0px!important;
+      z-index: 50;
+      h1 {
+            font-size: 36px!important;
+            line-height: 1em;
+      }
+  }
+  
+  h1, .titleeditor {
+      padding: 0px;
+      margin: 0px;
+      max-width: 100%;
+      border-radius: 0px!important;
+      z-index: 50;
+      font-size: 36px!important;
+      line-height: 1em;
+  }
+  
+  i.nav-logout.ion-log-out {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+  }
+  
+  i.nav-chats {
+      margin-top: 6px!important;
+      margin-left: -12px!important;
+      display: block;
+      width: 50px;
+      margin-top: -12px;
+  }
+  
+  #chats div.panel-heading {
+      font-size: 28px!important;
+      line-height: 1.2em!important;
+  }
+  
+  .list-item { border-radius: 0px!important; }
+  
+  iframe, footer  { display: none; }
+  
+  .nameprompt, #header-block img, #about, p#share, span.timestamp { display: none!important; }
+  
+  
+  div.sendbar button {
+      position: absolute; right: 2px; 
+  }
+  
+  div.sendbar input { padding-left: 12px; 
+  
+  ::-webkit-input-placeholder {
+     color: darkGray;
+  }
+  
+  :-moz-placeholder { 
+     color: darkGray;  
+  }
+  
+  ::-moz-placeholder {  
+     color: darkGray;  
+  }
+  
+  :-ms-input-placeholder {  
+     color: darkGray;  
+  }
+  }
+  
+  #chatbox {
+      height:365px!important;
+  }
 
 }
-
 
 .highlighted-social-link {
   color: white
@@ -568,39 +596,14 @@ h1 {
 
 }
 
-textarea {
-  text-align: left;
-  border-radius: 10px;
-  background: transparent;
-  font-family: monospace;
-  padding: 0;
-  outline: 0;
-  font-size: 18px;
-  border: 0;
-  resize: none;
-  color: white;
+
+.animatedheader, #header-block, p.lead {
+    animation: bounceDown .5s 0s ease both;
+    transform-origin: top left;
+    -webkit-animation: bounceDown .5s 0s ease both;
+    -webkit-transform-origin: top left;
 }
 
-.CodeMirror, .cm-s-monokai .CodeMirror-gutters {
-  background: #2e3338 !important;
-  font-size: 16px;
-}
-
-.modal-dialog {
-  width: 750px;
-}
-
-.modal-content {
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.modal-content .btn {
-    border-radius: 10px;
-    font-size: 16px;
-    box-shadow: 0 0 12px black;
-    border: 1px solid rgba(255,255,255,.5);
-}
 
 // input.titleeditor:hover {
 //     border-bottom: 1px dotted;
