@@ -1,0 +1,8 @@
+# package.txt generated from package.json for Origin
+# express
+jade
+mongoose
+less-middleware
+colors
+socket.io
+zeroclipboard
