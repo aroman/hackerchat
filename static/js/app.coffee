@@ -1,3 +1,5 @@
+root = exports ? this
+
 window.hacks = []
 window.TURNED_ON = false
 
@@ -118,6 +120,13 @@ window.ChatView = Backbone.View.extend
     $("#chatbox").append("<br>" + buildChatLine(user, msg, date, color))
     @scrollToBottom()
     _.delay(@scrollToBottom, 250)
+    notification = window.webkitNotifications.createNotification(
+      '/img/favicon.png',
+      user,
+      msg
+    )
+    notification.show()
+    notification.ondisplay -> delay 1000, -> notification.cancel()
 
   sendFromButton: ->
     @sendMessage $(".sendbox").val()
