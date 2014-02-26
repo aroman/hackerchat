@@ -4,6 +4,7 @@ ChatSchema = new mongoose.Schema
   title: String
   users: [{type: mongoose.Schema.ObjectId, ref: 'user'}]
   messages: []
+  code: String
 
 UserSchema = new mongoose.Schema
   name: String

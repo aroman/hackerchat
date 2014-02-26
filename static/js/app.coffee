@@ -54,6 +54,11 @@ $("#propogate-hack").click ->
   socket.emit "propogate_hack", hack_body
   $("#hackmodal").modal('hide');
 
+getCode: ->
+    $('#hackmodal').modal({backdrop: 'static'});
+    $("#hackmodal").on 'shown.bs.modal', ->
+      window.editor.refresh()
+
 window.ChatView = Backbone.View.extend
   el: 'body'
 
@@ -61,6 +66,7 @@ window.ChatView = Backbone.View.extend
     "keyup .sendbox": "onSendBoxKeyUp"
     "click .sendbutton": "sendFromButton"
     "keyup #title": "onTitleEditorKeyUp"
+    "click .addCode": "getCode"
 
   initialize: (user, chat) ->
     @chat = chat
@@ -74,12 +80,11 @@ window.ChatView = Backbone.View.extend
 
     socket.emit 'subscribe', @chat._id
 
-    socket.on "new_hack", (hack_body) ->
-      console.log "RECIEVED HACK!!"
-      window.hacks.push(hack_body)
-      console.log "window.hacks is below"
-      console.log window.hacks
+   socket.on "new_hack", (hack_body) ->
+      console.log "RECEIVED HACK!!"
+      editor.doc.setValue(hack_body)
       window.TURNED_ON = true
+
 
     if @chat.title
       @updateTitle @chat.title
@@ -112,6 +117,11 @@ window.ChatView = Backbone.View.extend
     document.title = title
     $("#title").val(title);
 
+  getCode: ->
+    $('#hackmodal').modal({backdrop: 'static'});
+    $("#hackmodal").on 'shown.bs.modal', ->
+      window.editor.refresh()
+      
   scrollToBottom: ->
     $("#chatbox").scrollTop $('#chatbox')[0].scrollHeight
 
