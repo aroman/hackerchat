@@ -33,14 +33,14 @@ AutoDeploy: Enable WebSockets, add a remote and push your changes. Simple as tha
 
 ### Local Installation Guide
 
-1) Clone or download .zip and extract this repository
-2) Install node.js from [http://nodejs.org](http://nodejs.org)
-3) Open up Terminal/Command Prompt and type in `npm install coffee-script -g` (you may want to sudo on unix-based OSes)
-4) Sign up for an account on MongoLab and create a database at [https://mongolab.com](https://mongolab.com)
-5) Create a file named `secrets.coffee` (see above), fill in your database location and credentials, and place it in the repository root.
-6) Run `coffee app.coffee` in Terminal/Command Prompt
-7) Navigate to [http://127.0.0.1:3000](http://127.0.0.1:300) in your browser
-8) Ba-de-dum! You got it up and running!
+1. Clone or download .zip and extract this repository
+2. Install node.js from [http://nodejs.org](http://nodejs.org)
+3. Open up Terminal/Command Prompt and type in `npm install coffee-script -g` (you may want to sudo on unix-based OSes)
+4. Sign up for an account on MongoLab and create a database at [https://mongolab.com](https://mongolab.com)
+5. Create a file named `secrets.coffee` (see above), fill in your database location and credentials, and place it in the repository root.
+6. Run `coffee app.coffee` in Terminal/Command Prompt
+7. Navigate to [http://127.0.0.1:3000](http://127.0.0.1:300) in your browser
+8. Ba-de-dum! You got it up and running!
 
 ### Dependencies
 
