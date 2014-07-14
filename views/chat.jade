@@ -16,6 +16,7 @@ block content
         span.alt :&nbsp;
       input.sendbox(type="text", required="required", placeholder="Message")
       button.sendbutton(disabled="true") Send
+      button.addCode Code
         i.ion-ios7-paperplane
   #hackmodal.modal.fade
     .modal-dialog
@@ -24,14 +25,7 @@ block content
           h4.modal-title Hack the Chat
         .modal-body(style='text-align:left')
           textarea.hackbox(style="width:100%; height: 300px", autofocus='autofocus')
-            | function (text, callback) {
-            |    &#x2F;&#x2F; This is what you want to capture
-            |    var INDENTIFIER = "";
-            |  
-            |    if (text.slice(0, INDENTIFIER.length - 1) is INDENTIFIER) {
-            |      &#x2F;&#x2F; Your code goes here!
-            |    }
-            |}
+            | #{code.code}
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal', style="float:left") Close
           button.btn.btn-danger#propogate-hack(type='button') Propogate hack

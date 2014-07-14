@@ -139,7 +139,7 @@ app.get '/chats/:chat_id', ensureSession, (req, res) ->
           if err
             res.send(500, err)
           else 
-            res.render 'chat', {title: TITLE, user: JSON.stringify(user), user_dict: user, chat: JSON.stringify(chat)}
+            res.render 'chat', {title: TITLE, user: JSON.stringify(user), user_dict: user, chat: JSON.stringify(chat), code: chat}
 
 app.get '/logout', (req, res) ->
   req.session = null
@@ -156,6 +156,12 @@ io.sockets.on 'connection', (socket) ->
 
   socket.on 'propogate_hack', (hack_body) ->
     io.sockets.in(room).emit 'new_hack', hack_body
+    models.Chat.update {_id: room}, {code: hack_body}, (err) ->
+    if err
+      console.error "ERROR SAVING MESSAGE TO CHAT #{room}: #{err}"
+    else
+      console.error "success"
+
 
   socket.on 'update_title', (title) ->
     socket.broadcast.to(room).emit 'title_update', title
@@ -177,3 +183,4 @@ io.sockets.on 'connection', (socket) ->
         console.error "ERROR SAVING MESSAGE TO CHAT #{room}: #{err}"
       else
         console.error "success"
+
